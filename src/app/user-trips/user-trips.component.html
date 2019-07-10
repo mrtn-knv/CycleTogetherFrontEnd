@@ -1,0 +1,23 @@
+<div class="routes-container" *ngIf="hasTrips">
+    <ul>
+      <li class="routes">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm" *ngFor="let route of userTrips">
+                    <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">{{ route.name }}</h5>
+                          <p class="card-text">{{ route.info }}</p>
+                          <button class="btn btn-dark" [routerLink]="['/route/', route.id]">Details</button>
+                        </div>
+                      </div>
+                </div>
+            </div> 
+        </div>                
+      </li>        
+    </ul>
+</div>
+
+<div *ngIf="!hasTrips">
+  <h4>You have no routes.</h4>
+</div>

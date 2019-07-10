@@ -1,0 +1,64 @@
+<h5>REGISTER</h5>
+
+<form [formGroup]="registerForm">
+ 
+    <div class="registerInput">
+      <label for="formGroupExampleInput" >EMAIL</label>
+      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Email address" [(ngModel)]="registerModel.email" formControlName="_email">
+    </div>
+    <div class="registerInput">
+      <label for="formGroupExampleInput2">PASSWORD</label>
+      <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Password" [(ngModel)]="registerModel.password" formControlName="_password">
+    </div>
+    <div class="registerInput">
+        <label for="formGroupExampleInput2">FISRT NAME</label>
+        <input type="text" class="form-control" id="formGroupExampleInput3" placeholder="First name" [(ngModel)]="registerModel.firstName" formControlName="first_name">
+      </div>
+      <div class="registerInput">
+          <label for="formGroupExampleInput2">LAST NAME</label>
+          <input type="text" class="form-control" id="formGroupExampleInput4" placeholder="Last name" [(ngModel)]="registerModel.lastName" formControlName="last_name">
+        </div>
+
+        <label class="label">TERRAIN</label>
+        <div class="form-check">
+            <select class="custom-select" [(ngModel)]="registerModel.terrain" formControlName="_terrain">
+                <option *ngFor="let name of terrainLabels">{{ name }}</option>
+              </select>
+        </div>
+        <label class="label">YOUR ENDURANCE :</label>
+        <div class="form-check">
+            <select class="custom-select" [(ngModel)]="registerModel.endurance" formControlName="_endurance">
+                <option *ngFor="let name of enduranceLabels">{{ name }}</option>
+              </select>
+        </div>
+        <label class="label">YOUR DIFFICULTY LEVEL :</label>
+        <div class="form-check">
+            <select class="custom-select" [(ngModel)]="registerModel.difficulty" formControlName="_difficulty">
+                <option *ngFor="let name of difficultyLabels">{{ name }}</option>
+              </select>
+        </div>       
+        <label class="label">TYPE OF ROUTES YOU PREFER :</label>
+        <div class="form-check">
+            <select class="custom-select" [(ngModel)]="registerModel.typeOdRoute" formControlName="_typeOfRoute">
+                <option *ngFor="let name of typeOfRouteLabels">{{ name }}</option>
+              </select>
+        </div>
+        <div class="equipmentContainer">
+            <label class="label">EQUIPMENTS :</label>
+            <div>
+                <ul class="list-group">
+                  <li class="list-group-item" >
+                    <label  *ngFor="let equipment of equipmentModel">
+                      <input type="checkbox"  formControlName="equipments" (click)="addToEquipments(equipment)"/>
+                      {{ equipment.name }}
+                    </label>                   
+                  </li>
+                </ul>
+                
+              </div>
+        </div>
+        
+    <div id="registerBtn">
+        <button  type="submit"[disabled]="!registerForm.valid" class="btn btn-outline-primary" (click)="register()">REGISTER</button>
+    </div>   
+  </form>

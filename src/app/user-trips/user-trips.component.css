@@ -1,0 +1,16 @@
+.routes-container{
+    padding: 2%;
+
+}
+
+.container{
+    padding-top: 2%;   
+}
+
+.routes{
+    list-style: none; 
+}
+
+.card{
+    width: 18rem;
+}

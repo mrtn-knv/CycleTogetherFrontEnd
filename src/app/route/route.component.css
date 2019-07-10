@@ -1,0 +1,17 @@
+.routes{
+   list-style: none; 
+}
+a{
+   font-size: 1.3rem;
+}
+.routes-container{
+    padding-top: 10px;
+}
+
+.col-sm{
+    padding: 2%;
+}
+
+.card{
+    width: 18rem;
+}

@@ -1,0 +1,20 @@
+.nav-items{
+    padding: 25px;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #383737;
+}
+.nav-bar{
+    background-color:#cceabe;
+    
+    height: 4.2rem;
+}
+li{
+    display: inline-block;
+    text-align: center;
+
+}
+#logo{
+    text-align: left;
+}
+

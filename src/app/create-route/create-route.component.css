@@ -1,0 +1,30 @@
+.routeInput{
+    width: 29%;
+    padding: 15px;
+}
+
+#createBtn{
+    padding: 15px;
+}
+
+h5{
+    padding: 15px;
+    font-weight: 400;
+}
+.form-check{
+    padding: 0;
+    padding: 15px;
+    width: 25%;
+}
+.label{
+    padding-left: 15px;
+    padding-top: 15px;
+}
+
+.list-group{
+    width: 29%;
+    padding-left: 15px;
+}
+.radionBtns{
+    padding-left: 15px;
+}

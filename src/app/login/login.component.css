@@ -1,0 +1,13 @@
+.loginInput{
+    width: 25%;
+    padding: 15px;
+}
+
+#loginBtn{
+    padding: 15px;
+}
+
+h5{
+    padding: 15px;
+    font-weight: 400;
+}
