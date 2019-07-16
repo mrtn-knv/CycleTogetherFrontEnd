@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpProxy } from './authorization';
+import { HttpProxy } from './http-proxy';
 import { Trip } from '../models/trip';
 import { Observable } from 'rxjs';
 

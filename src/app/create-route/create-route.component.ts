@@ -66,7 +66,6 @@ export class CreateRouteComponent implements OnInit {
   }
 
   addToEquipments(equipment: Equipment):void{
-    console.log(equipment);
     this.routeEquipments.find
     var current = this.routeModel.equipmentsIds.indexOf(equipment.id);
     if(current != -1){

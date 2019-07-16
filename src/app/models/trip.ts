@@ -1,4 +1,4 @@
-import { User } from './User';
+import { SubscribedUsers } from './subscribed-users';
 
 export class Trip {
     id:string;
@@ -8,7 +8,7 @@ export class Trip {
     destination:string;
     startTime:Date;
     suitableForKids:boolean;
-    subscribed:string[] = [];
+    subscribed:SubscribedUsers[] = [];
     equipmentsIds: string[] = [];
     terrain: string;
     endurance: string;

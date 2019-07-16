@@ -18,6 +18,7 @@ import { CreateRouteComponent } from './create-route/create-route.component';
 import { RouterModule } from '@angular/router';
 import { GalleryComponent } from './gallery/gallery.component';
 import { Subscriber } from './services/subscriber';
+import { HttpProxy } from './services/http-proxy';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { Subscriber } from './services/subscriber';
     RouterModule
 
   ],
-  providers: [Authorization, EquipmentService, RoutesService, Subscriber],
+  providers: [Authorization, EquipmentService, RoutesService, Subscriber, HttpProxy],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

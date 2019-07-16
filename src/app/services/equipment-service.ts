@@ -1,5 +1,5 @@
 import { environment } from 'src/environments/environment';
-import { HttpProxy } from './authorization';
+import { HttpProxy } from './http-proxy';
 import { Equipment } from '../models/equipment';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';

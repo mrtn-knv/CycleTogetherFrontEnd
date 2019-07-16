@@ -1,24 +1,27 @@
-<div class="card" style="width: 28rem;">
-  <img *ngIf="" class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{ trip.name }}</h5>
-    <p class="card-text">{{ trip.info }}</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Starts from: {{ trip.startPoint }}</li>
-    <li class="list-group-item">Ends at: {{ trip.destination }}</li>
-    <li class="list-group-item">Starts at: {{ trip.startTime }}</li>
-    <li class="list-group-item">Is suitable for kids: {{ trip.suitableForKids }}</li>
-    <li class="list-group-item">People subscribed: {{ subscribed }}</li>
-    <li class="list-group-item">Terrain: {{ trip.terrain }}</li>
-    <li class="list-group-item">Expected duration: {{ trip.endurance }}</li>
-    <li class="list-group-item">Type of route: {{ trip.type }}</li>
-    <li class="list-group-item">Difficulty: {{ trip.difficulty }}</li>
-  </ul>
-  <div class="card-body">
-    <button *ngIf="isSubscribed" (click)="unsubscribeFromRoute(trip)" class="btn btn-light">UNSUBSCRIBE</button>
-    <button *ngIf="!isSubscribed" (click)="subscribe(trip)" class="btn btn-light">SUBSCRIBE</button>
-    <button class="btn btn-light">INVITE PEOPLE</button>
-    <button (click)="goToGallery(trip.id)" class="btn btn-light">GALLERY</button>
+<div>
+  <div class="card" style="width: 28rem;">
+    <img *ngIf="" class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ trip.name }}</h5>
+      <p class="card-text">{{ trip.info }}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Starts from: {{ trip.startPoint }}</li>
+      <li class="list-group-item">Ends at: {{ trip.destination }}</li>
+      <li class="list-group-item">Starts at: {{ trip.startTime }}</li>
+      <li class="list-group-item">Is suitable for kids: {{ trip.suitableForKids }}</li>
+      <li class="list-group-item">People subscribed: {{ subscribedLenght }}</li>
+      <li class="list-group-item">Terrain: {{ trip.terrain }}</li>
+      <li class="list-group-item">Expected duration: {{ trip.endurance }}</li>
+      <li class="list-group-item">Type of route: {{ trip.type }}</li>
+      <li class="list-group-item">Difficulty: {{ trip.difficulty }}</li>
+    </ul>
+    <div class="card-body">
+      <button *ngIf="isSubscribed" (click)="unsubscribeFromRoute(trip)" class="btn btn-light">UNSUBSCRIBE</button>
+      <button *ngIf="!isSubscribed" (click)="subscribe(trip)" class="btn btn-light">SUBSCRIBE</button>
+      <button class="btn btn-light">INVITE PEOPLE</button>
+      <button (click)="goToGallery(trip.id)" class="btn btn-light">GALLERY</button>
+    </div>
   </div>
 </div>
+

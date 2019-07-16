@@ -14,8 +14,8 @@ import { GalleryComponent } from './gallery/gallery.component';
     { path: 'route/all/mytrips', component: UserTripsComponent },
     { path: 'route/all', component: RouteComponent },
     { path: 'route/new', component: CreateRouteComponent },
-    {path: 'image/all/:id', component: GalleryComponent},
     { path: 'route/:id', component: RouteDetailsComponent },
+    { path: 'image/all/:id', component: GalleryComponent },
 ];
 
 @NgModule({
