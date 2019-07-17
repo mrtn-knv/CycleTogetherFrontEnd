@@ -19,6 +19,20 @@ import { RouterModule } from '@angular/router';
 import { GalleryComponent } from './gallery/gallery.component';
 import { Subscriber } from './services/subscriber';
 import { HttpProxy } from './services/http-proxy';
+import { AuthGuard } from './services/auth-guard';
+import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
+
+const JWT_Module_Options: JwtModuleOptions = {
+  config: {
+      tokenGetter: tokenGetter,
+      authScheme: 'JWT'
+      // whitelistedDomains: yourWhitelistedDomains
+  }
+};
+
+export function tokenGetter(){
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -39,10 +53,11 @@ import { HttpProxy } from './services/http-proxy';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    JwtModule.forRoot(JWT_Module_Options)
 
   ],
-  providers: [Authorization, EquipmentService, RoutesService, Subscriber, HttpProxy],
+  providers: [Authorization, EquipmentService, RoutesService, Subscriber, HttpProxy, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

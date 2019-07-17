@@ -7,15 +7,16 @@ import { RouteDetailsComponent } from './route-details/route-details.component';
 import { UserTripsComponent } from './user-trips/user-trips.component';
 import { CreateRouteComponent } from './create-route/create-route.component';
 import { GalleryComponent } from './gallery/gallery.component';
+import { AuthGuard } from './services/auth-guard';
 
  const routes: Routes = [
-    { path: 'authorization/login', component: LoginComponent },
-    { path: 'authorization/register', component: RegisterComponent },
-    { path: 'route/all/mytrips', component: UserTripsComponent },
-    { path: 'route/all', component: RouteComponent },
-    { path: 'route/new', component: CreateRouteComponent },
-    { path: 'route/:id', component: RouteDetailsComponent },
-    { path: 'image/all/:id', component: GalleryComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'all', component: RouteComponent, canActivate: [AuthGuard] },
+    { path: 'new', component: CreateRouteComponent, canActivate: [AuthGuard] },
+    { path: 'mytrips', component: UserTripsComponent, canActivate: [AuthGuard] },
+    { path: 'route/:id', component: RouteDetailsComponent, canActivate: [AuthGuard] },
+    { path: 'image/all/:id', component: GalleryComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

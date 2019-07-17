@@ -34,10 +34,7 @@ export class RouteDetailsComponent implements OnInit {
         this.trip = routeRes;
         this.subscribedLenght = this.trip.subscribed.length;
         this.subscribed = routeRes.subscribed;
-        debugger;  
-        this.isSubscribed = this.isUserSubscribed();
-        console.log(this.isSubscribed);
-               
+        this.isSubscribed = this.isUserSubscribed(this.subscribed);              
       })
     })      
   }
@@ -47,18 +44,27 @@ export class RouteDetailsComponent implements OnInit {
     this.router.navigate(['image/all/'+this.id]);
   }
 
-  isUserSubscribed():boolean{
-    debugger;
+  isUserSubscribed(subscrubed:SubscribedUsers[]):boolean{
+ 
        let token =  localStorage.getItem('token');
        this.decodedToken = jwt_decode(token);
        this.currentUserId = this.decodedToken.nameid;
-      
-       this.subscribed.forEach(element =>  {
-         if(element.userId == this.currentUserId){
-           return true;
-         }
-       })
+
+       for (var val of subscrubed) {
+        if(val.userId == this.currentUserId){
+          return true;
+        }
+      }
        return false;
+  }
+
+  delete(id:string){
+      this.routeService.deleteRoute(id).subscribe(res =>{
+        if(res){
+          this.router.navigate(['all']);
+        }
+      });
+      
   }
  
   subscribe(subs:Trip){
@@ -76,14 +82,14 @@ export class RouteDetailsComponent implements OnInit {
     })
   }
 
-
   unsubscribeFromRoute(trip:Trip){
     this.subscriber.unsubscribeFromTrip(trip).subscribe(res => {
       if(!res){
-        alert("There was a problem with unsubscription. Please, try again.")
+        alert("There was a problem with unsubscription. Please, try again.");
       }
       else{
         this.subscribedLenght--;
+        window.location.reload();
       }
     })
   }

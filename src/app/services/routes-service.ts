@@ -30,4 +30,8 @@ export class RoutesService {
    createRoute(trip: Trip):Observable<boolean>{
        return this.htttp.post(this.baseUrl+"route/new", trip);
    }
+
+   deleteRoute(id: string): Observable<boolean>{
+      return this.htttp.delete(this.baseUrl+"route/"+id);
+   }
 }

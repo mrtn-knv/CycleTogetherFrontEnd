@@ -45,6 +45,23 @@ export class HttpProxy {
 
      }
 
+     public delete<T>(url: string): Observable<T>{
+      const headers = this.defaultHeaders();
+      return new Observable<T>(subs => {
+          this.http.delete<T>(url, { headers }).subscribe(response => {
+            if (!environment.production) {
+              console.log(url, JSON.stringify(response));
+            }
+            subs.next(response);
+            subs.complete();
+          }, (error) => {
+            subs.error(error);
+            subs.complete();
+          });
+        });
+
+   }
+
      private defaultHeaders(): HttpHeaders {
          let headers = new HttpHeaders();
          headers = headers.set('Content-Type', 'application/json');

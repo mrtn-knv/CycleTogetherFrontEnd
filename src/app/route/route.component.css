@@ -8,10 +8,6 @@ a{
     padding-top: 10px;
 }
 
-.col-sm{
-    padding: 2%;
-}
-
-.card{
-    width: 18rem;
+.col-sm-4{
+    padding:1%;
 }

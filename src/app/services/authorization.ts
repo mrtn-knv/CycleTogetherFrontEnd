@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 import { Login } from '../models/login';
 import { HttpProxy } from './http-proxy';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
 providedIn: 'root'
@@ -12,7 +13,7 @@ export class Authorization {
     public isAuthorized: BehaviorSubject<boolean>;
     baseUrl: string = environment.url;
 
-    constructor(private http: HttpProxy){
+    constructor(private http: HttpProxy, public jwtHelper: JwtHelperService){
         this.isAuthorized = new BehaviorSubject<boolean>(this.http.getToken() != null);
     }
 
@@ -32,6 +33,7 @@ export class Authorization {
                subs.complete();
            }
        });
+
    }
 
    public logout(){
@@ -41,5 +43,11 @@ export class Authorization {
         subs.next(true);
         subs.complete();  
        })
+   }
+
+   public isAuthenticated(): boolean{
+       const token = localStorage.getItem('token');
+       return !this.jwtHelper.isTokenExpired(token);
+       
    }
 }

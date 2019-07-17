@@ -1,5 +1,5 @@
 <div>
-  <div class="card" style="width: 28rem;">
+  <div class="card" style="width: 27rem;">
     <img *ngIf="" class="card-img-top" src="..." alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">{{ trip.name }}</h5>
@@ -19,7 +19,9 @@
     <div class="card-body">
       <button *ngIf="isSubscribed" (click)="unsubscribeFromRoute(trip)" class="btn btn-light">UNSUBSCRIBE</button>
       <button *ngIf="!isSubscribed" (click)="subscribe(trip)" class="btn btn-light">SUBSCRIBE</button>
+      <button class="btn btn-light" (click)="delete(trip.id)">DELETE</button>
       <button class="btn btn-light">INVITE PEOPLE</button>
+      <button class="btn btn-light">EDIT</button>
       <button (click)="goToGallery(trip.id)" class="btn btn-light">GALLERY</button>
     </div>
   </div>

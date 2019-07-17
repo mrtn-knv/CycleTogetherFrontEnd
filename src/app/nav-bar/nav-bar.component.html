@@ -5,24 +5,24 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <a class="navbar-brand" href="#">{{ title }}</a>
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active" *ngIf="authorized">
-          <a class="nav-link" [routerLink]="['route/all']">HOME</a>
+        <li class="nav-item active" *ngIf="isAuthorized">
+          <a class="nav-link" [routerLink]="['all']">HOME</a>
         </li>
-        <li class="nav-item active" *ngIf="authorized">
-          <a class="nav-link" [routerLink]="['route/all/mytrips']">MY TRIPS</a>
+        <li class="nav-item active" *ngIf="isAuthorized">
+          <a class="nav-link" [routerLink]="['mytrips']">MY TRIPS</a>
         </li>
-        <li class="nav-item active" *ngIf="authorized">
-          <a class="nav-link" [routerLink]="['route/new']">CREATE TRIP</a>
+        <li class="nav-item active" *ngIf="isAuthorized">
+          <a class="nav-link" [routerLink]="['new']">CREATE TRIP</a>
         </li>
-        <li class="nav-item active" *ngIf="!authorized">
-            <a class="nav-link" [routerLink]="['authorization/login']">LOGIN</a>
+        <li class="nav-item active" *ngIf="isAuthorized" (click)="logOut()">
+          <a class="nav-link">LOGOUT</a>
+        </li>
+        <li class="nav-item active" *ngIf="!isAuthorized">
+            <a class="nav-link" [routerLink]="['login']">LOGIN</a>
           </li>
-          <li class="nav-item active" *ngIf="!authorized">
-              <a class="nav-link" [routerLink]="['authorization/register']">REGISTER</a>
-            </li>
-          <li class="nav-item active" *ngIf="authorized" (click)="logOut()">
-            <a class="nav-link">LOGOUT</a>
-          </li>
+          <li class="nav-item active" *ngIf="!isAuthorized">
+              <a class="nav-link" [routerLink]="['register']">REGISTER</a>
+            </li>         
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

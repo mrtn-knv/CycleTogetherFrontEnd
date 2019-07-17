@@ -15,10 +15,10 @@ export class InterceptorService implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req)
         .pipe(catchError((error) => {
-            debugger;
             if(error.status === 401){
                 this.authentication.logout();
-                this.router.navigate(['authorization/login']);             
+                this.router.navigate(['login']);
+                window.location.reload();             
             }
             return throwError(error);
         }));

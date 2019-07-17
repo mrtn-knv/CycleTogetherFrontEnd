@@ -19,5 +19,6 @@ export class Subscriber {
     }
     public unsubscribeFromTrip(trip:Trip):Observable<boolean>{
        return this.http.post(this.baseUrl+"route/unsubscribe", trip);
+       
     }
 }

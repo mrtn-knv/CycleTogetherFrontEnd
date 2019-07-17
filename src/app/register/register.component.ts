@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
 
   register(){
     this.authorizator.register(this.registerModel).subscribe((ok) => {
-      if(ok){ this.route.navigate(['authorization/login']); }
+      if(ok){ this.route.navigate(['login']); }
     }, (error) =>{
       this.success = false;      
       console.log(error);
