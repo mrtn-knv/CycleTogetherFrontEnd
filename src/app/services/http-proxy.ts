@@ -65,9 +65,10 @@ export class HttpProxy {
      private defaultHeaders(): HttpHeaders {
          let headers = new HttpHeaders();
          headers = headers.set('Content-Type', 'application/json');
+         headers = headers.set('Access-Control-Allow-Origin', '*');                             
          const token = this.getToken();         
          if(token){            
-           headers = headers.set('Authorization', 'Bearer ' + token);                                   
+           headers = headers.set('Authorization', 'Bearer ' + token);
          }
          return headers;
      }

@@ -1,5 +1,15 @@
 <div>
 <h3 class="title">GALLERY</h3>
+
+<label class="image-upload-container btn btn-bwm">
+  <span>Select Image</span>
+  <input #imageInput
+         type="file"
+         accept="image/*"
+         (change)="processFile(imageInput)">
+</label>
+
+
 </div>
 <div *ngFor="let image of pictures" class="img-container">
   <a href=""><img src="{{ image.path }}" class="img-thumbnail" alt=""></a> 

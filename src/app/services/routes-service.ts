@@ -31,6 +31,10 @@ export class RoutesService {
        return this.htttp.post(this.baseUrl+"route/new", trip);
    }
 
+   getUserSubscriptions(): Observable<Trip[]>{
+       return this.htttp.get(this.baseUrl+"route/subscribed");
+   }
+
    deleteRoute(id: string): Observable<boolean>{
       return this.htttp.delete(this.baseUrl+"route/"+id);
    }

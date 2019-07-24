@@ -1,0 +1,13 @@
+.routes{
+    list-style: none; 
+ }
+ a{
+    font-size: 1.3rem;
+ }
+ .routes-container{
+     padding: 6%;
+ }
+ 
+ .col-sm-4{
+     padding:1%;
+ }

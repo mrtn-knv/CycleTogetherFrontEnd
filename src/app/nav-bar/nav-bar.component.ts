@@ -17,7 +17,7 @@ export class NavBarComponent implements OnInit {
   ngOnInit() {
     this.authorizator.isAuthorized.subscribe(isAuth => {
       this.isAuthorized = isAuth;
-      console.log(this.isAuthorized);
+     this.isAuthorized = this.authorizator.isAuthenticated().valueOf();
     });
   }
   logOut(){

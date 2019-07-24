@@ -21,6 +21,8 @@ import { Subscriber } from './services/subscriber';
 import { HttpProxy } from './services/http-proxy';
 import { AuthGuard } from './services/auth-guard';
 import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
+import { AngularFileUploaderModule } from 'angular-file-uploader';
+import { SubscribedTripsComponent } from './subscribed-trips/subscribed-trips.component';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -44,7 +46,8 @@ export function tokenGetter(){
     RouteDetailsComponent,
     UserTripsComponent,
     CreateRouteComponent,
-    GalleryComponent
+    GalleryComponent,
+    SubscribedTripsComponent
   ],
   imports: [
     FormsModule,
@@ -54,7 +57,8 @@ export function tokenGetter(){
     AppRoutingModule,
     FormsModule,
     RouterModule,
-    JwtModule.forRoot(JWT_Module_Options)
+    JwtModule.forRoot(JWT_Module_Options),
+    AngularFileUploaderModule
 
   ],
   providers: [Authorization, EquipmentService, RoutesService, Subscriber, HttpProxy, AuthGuard],

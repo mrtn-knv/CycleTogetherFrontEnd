@@ -5,6 +5,8 @@ import { Picture } from '../models/picture';
 import { Observable } from 'rxjs';
 
 
+
+
 @Injectable({
     providedIn: 'root'
     })
@@ -12,9 +14,10 @@ export class Gallery {
 
         baseUrl: string = environment.url;
 
+
         constructor(private http: HttpProxy){ }
 
-        public Upload(image:Picture, routeId:string):Observable<Picture>{
+        public upload(image:any, routeId:string):Observable<Picture>{
 
            return this.http.post(this.baseUrl+"image/"+routeId, image);
         }
