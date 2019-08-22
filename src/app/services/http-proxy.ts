@@ -28,8 +28,9 @@ export class HttpProxy {
         return this.http.get<T>(url, { headers });
         
     }
-     public post<T>(url: string, data:any): Observable<T>{
+     public post<T>(url: string, data:any): Observable<T>{       
         const headers = this.defaultHeaders();
+
         return new Observable<T>(subs => {
             this.http.post<T>(url, data, { headers }).subscribe(response => {
               if (!environment.production) {
@@ -44,6 +45,24 @@ export class HttpProxy {
           });
 
      }
+
+     public postFile<T>(url: string, data:any): Observable<T>{       
+      const headers = this.fileHeaders();
+
+      return new Observable<T>(subs => {
+          this.http.post<T>(url, data, { headers }).subscribe(response => {
+            if (!environment.production) {              
+              console.log(url, JSON.stringify(response));
+            }
+            subs.next(response);
+            subs.complete();
+          }, (error) => {
+            subs.error(error);
+            subs.complete();
+          });
+        });
+
+   }
 
      public delete<T>(url: string): Observable<T>{
       const headers = this.defaultHeaders();
@@ -62,10 +81,22 @@ export class HttpProxy {
 
    }
 
+   private fileHeaders(): HttpHeaders{
+     let headers = new HttpHeaders();
+       headers = headers.set('Access-Control-Allow-Origin', '*');
+       const token = this.getToken();
+       if(token){
+        headers = headers.set('Authorization', 'Bearer ' + token);
+       }
+      
+       return headers;    
+   }
+
      private defaultHeaders(): HttpHeaders {
          let headers = new HttpHeaders();
          headers = headers.set('Content-Type', 'application/json');
-         headers = headers.set('Access-Control-Allow-Origin', '*');                             
+         headers = headers.set('Access-Control-Allow-Origin', '*');
+                                      
          const token = this.getToken();         
          if(token){            
            headers = headers.set('Authorization', 'Bearer ' + token);

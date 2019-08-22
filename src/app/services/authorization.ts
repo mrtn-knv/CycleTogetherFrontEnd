@@ -22,6 +22,7 @@ export class Authorization {
    }
 
    public login(model: Login):Observable<boolean>{
+    
        return new Observable<boolean>(subs =>{
            this.http.post(this.baseUrl + 'authorization/login', model).subscribe(response =>{
                this.http.setToken(response['token']);
@@ -33,21 +34,24 @@ export class Authorization {
                subs.complete();
            }
        });
-
    }
 
-   public logout(){
+   public logout(): Observable<boolean>{
        return new Observable<boolean>(subs => {
         this.http.setToken(null);
         this.isAuthorized.next(false);
-        subs.next(true);
+        subs.next(false);
         subs.complete();  
        })
    }
 
    public isAuthenticated(): boolean{
-       const token = localStorage.getItem('token');
+       const token = localStorage.getItem('token');     
        return !this.jwtHelper.isTokenExpired(token);
        
    }
+
+//    public Test(): Observable<boolean>{
+//        return this.isAuthorized.asObservable();
+//    }
 }
