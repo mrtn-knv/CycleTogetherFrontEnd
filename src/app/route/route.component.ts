@@ -14,12 +14,12 @@ export class RouteComponent implements OnInit {
 
   routesModel: Trip[] = []; 
 
-  constructor(private routeService: RoutesService, private router: Router) { }
+  constructor(private routeService: RoutesService) { }
 
   ngOnInit() {
     this.routeService.getRoutes().subscribe(routesRes => {
       this.routesModel = routesRes;
-      
+      console.log(this.routesModel);    
   });
 
   }

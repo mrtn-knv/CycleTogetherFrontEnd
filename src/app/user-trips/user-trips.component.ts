@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class UserTripsComponent implements OnInit {
 
   userTrips: Trip[] = [];
-  hasTrips: boolean = false;
+  hasTrips: boolean = true;
   id:string;
 
   constructor(private routeService: RoutesService,private activateRoute: ActivatedRoute, private router:Router) { }
@@ -21,6 +21,9 @@ export class UserTripsComponent implements OnInit {
         this.userTrips = routes;
         if(this.userTrips.length > 0){
           this.hasTrips = true;
+        }
+        else{
+          this.hasTrips = false;
         }
     });
 

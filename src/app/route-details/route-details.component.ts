@@ -20,7 +20,9 @@ export class RouteDetailsComponent implements OnInit {
   subscribed:SubscribedUsers[];
   isSubscribed:boolean = false;
   currentUserId:string;
+  routes: Trip[] = [];
   decodedToken:any;
+  isRouteOwner: boolean;
 
 
   constructor(private activateRoute: ActivatedRoute, private router:Router, private  routeService: RoutesService, private subscriber:Subscriber) {
@@ -28,15 +30,28 @@ export class RouteDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getUserId();
     this.activateRoute.paramMap.subscribe(params => {
       this.id = params.get('id');     
-      this.routeService.getRoute(this.id).subscribe(routeRes => {
-        this.trip = routeRes;
-        this.subscribedLenght = this.trip.subscribed.length;
-        this.subscribed = routeRes.subscribed;
-        this.isSubscribed = this.isUserSubscribed(this.subscribed);              
-      })
-    })      
+    })
+    this.routeService.getRoute(this.id).subscribe(routeRes => {
+      this.trip = routeRes;
+      this.isRouteOwner = this.isOwner(routeRes.userId);   
+      this.subscribedLenght = this.trip.subscribed.length;
+      this.subscribed = routeRes.subscribed;
+      this.isSubscribed = this.isUserSubscribed(this.subscribed);              
+    })
+    
+     
+  }
+
+  private isOwner(routeCreator: string) : boolean {
+    if (this.currentUserId !== routeCreator) {
+      return  false;
+    }
+    else{
+      return true;
+    }
   }
 
   goToGallery(id:string){
@@ -46,9 +61,7 @@ export class RouteDetailsComponent implements OnInit {
 
   isUserSubscribed(subscrubed:SubscribedUsers[]):boolean{
  
-       let token =  localStorage.getItem('token');
-       this.decodedToken = jwt_decode(token);
-       this.currentUserId = this.decodedToken.nameid;
+       this.getUserId();
 
        for (var val of subscrubed) {
         if(val.userId == this.currentUserId){
@@ -58,9 +71,17 @@ export class RouteDetailsComponent implements OnInit {
        return false;
   }
 
+  private getUserId() {
+    let token = localStorage.getItem('token');
+    this.decodedToken = jwt_decode(token);
+    this.currentUserId = this.decodedToken.nameid;
+  }
+
   delete(id:string){
       this.routeService.deleteRoute(id).subscribe(res =>{
         if(res){
+          var current = this.routes.findIndex(trip => trip.id === id);
+          this.routes.splice(current, 1);          
           this.router.navigate(['all']);
         }
       });
