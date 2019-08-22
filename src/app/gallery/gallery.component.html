@@ -1,18 +1,29 @@
-<div>
-<h3 class="title">GALLERY</h3>
-
-<label class="image-upload-container btn btn-bwm">
-  <span>Select Image</span>
-  <input #imageInput
-         type="file"
-         accept="image/*"
-         (change)="processFile(imageInput)">
-</label>
-
-
+    <div class="container">
+        <h3 class="font-weight-light text-center text-lg-left mt-4 mb-0 title">GALLERY</h3>            
+    <hr class="mt-2 mb-5">
+    <label class="uploader-circle">
+            <i class="fas fa-plus"></i>
+            UPLOAD
+            <input type="file" (change)="onFileSelected($event)" accept="image/*" id="uploader"/>
+        </label>
+<div class="row">
+            <div class="col-md-12">
+                <div id="grid" class="row">
+                        <div *ngFor="let image of pictures" class="mix col-sm-3 page1 page4 margin30">
+                            <div class="item-img-wrap">
+                                    <a class="lightbox" href="{{ image.path }}">
+                                            <img src="{{ image.path }}" class="img-responsive"/>
+                                         </a> 
+                                         <div class="lightbox-target" >
+                                            <img src="{{ image.path }}"/>
+                                            <a class="lightbox-close" href="#"></a>
+                                         </div>
+                                     </div>                                    
+                        </div>                                                      
+                </div>               
+            </div>
+      </div>            
 </div>
-<div *ngFor="let image of pictures" class="img-container">
-  <a href=""><img src="{{ image.path }}" class="img-thumbnail" alt=""></a> 
 
-</div>
-
+        
+  

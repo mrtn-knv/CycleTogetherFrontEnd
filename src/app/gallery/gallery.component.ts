@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Gallery } from '../services/gallery';
 import { Picture } from '../models/picture';
+import { EventEmitter } from 'events';
 
 class ImageSnippet{
   constructor(public src: string, public file: File){}
@@ -17,8 +18,8 @@ export class GalleryComponent implements OnInit {
   
   id:string;
   pictures:Picture[] = [];
-  fileData: File = null;
-  selectedFile: ImageSnippet;
+  selectedFile: File = null;
+ 
 
   constructor(private galleryService:Gallery, private activatedRoute: ActivatedRoute) { }
 
@@ -32,23 +33,18 @@ export class GalleryComponent implements OnInit {
     });      
   }
 
-processFile(imageInput: any){
-  const file: File = imageInput.files[0];
-  const reader = new FileReader();
-  debugger;
-  reader.addEventListener('load', (event:any) => {
-    this.selectedFile = new ImageSnippet(event.target.result, file);
-
-    this.galleryService.upload(this.selectedFile.file, this.id).subscribe((res) =>{
-        debugger;
-        this.pictures.push(res);
-    }, (err) =>{
-      debugger;
-      console.log(err);
-    })
-  });
-
-  reader.readAsDataURL(file);
-}
-
+  public onFileSelected(event){
+    this.selectedFile = <File>event.target.files[0];
+    const formData = new FormData();
+    formData.append('pic', this.selectedFile);
+    if(this.selectedFile){
+      this.galleryService.uploadImg(formData, this.id).subscribe(pic => {
+        if(pic){
+          this.pictures.push(pic);
+        }
+      }, (err) => {
+        console.log(err);
+      });
+    }
+  }
 }
