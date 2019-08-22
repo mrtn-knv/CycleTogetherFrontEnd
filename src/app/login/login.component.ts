@@ -20,8 +20,6 @@ export class LoginComponent implements OnInit {
 
   constructor(formBuilder: FormBuilder, private authorizator: Authorization, private router: Router) { 
 
-    //this.isAuthorized.next(localStorage.getItem('token') !== null);
-
     this.loginForm = formBuilder.group({
       '_email':['', Validators.required],
       '_password':['', Validators.required]
@@ -29,6 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
 

@@ -1,14 +1,20 @@
-<h5>Login</h5>
-<form [(formGroup)]="loginForm">
-    <div class="loginInput">
-      <label for="formGroupExampleInput" >EMAIL</label>
-      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Email address" [(ngModel)]="loginModel.email" formControlName="_email">
-    </div>
-    <div class="loginInput">
-      <label for="formGroupExampleInput2">PASSWORD</label>
-      <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Password" [(ngModel)]="loginModel.password" formControlName="_password">
-    </div>
-    <div id="loginBtn">
-        <button type="submit" class="btn btn-outline-primary" (click)="login()">LOGIN</button>
-    </div>    
-  </form>
+<div class="holder">
+  <div class="border"> 
+    <h5 class="title">LOGIN</h5>
+    <form [(formGroup)]="loginForm">
+        <div class="loginInput">
+          <label for="formGroupExampleInput" >EMAIL</label>
+          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Email address" [(ngModel)]="loginModel.email" formControlName="_email">
+        </div>
+        <div class="loginInput">
+          <label for="formGroupExampleInput2">PASSWORD</label>
+          <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Password" [(ngModel)]="loginModel.password" formControlName="_password">
+        </div>
+        <div id="loginBtn">
+            <button type="submit" class="btn btn-outline-primary" (click)="login()">LOGIN</button>
+        </div>    
+      </form>
+  </div>
+</div>
+
+
