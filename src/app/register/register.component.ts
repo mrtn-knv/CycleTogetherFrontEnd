@@ -68,12 +68,10 @@ export class RegisterComponent implements OnInit {
     this.equipmentModel.find
     var current = this.registerModel.equipments.indexOf(equipment.id);
     if(current != -1){
-      this.registerModel.equipments.splice(current, 1);
-      console.log(this.registerModel.equipments);                  
+      this.registerModel.equipments.splice(current, 1);                  
     }
     else{
         this.registerModel.equipments.push(equipment.id);   
-        console.log(this.registerModel.equipments);
     }
   }
 
