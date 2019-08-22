@@ -2,6 +2,7 @@ import { SubscribedUsers } from './subscribed-users';
 
 export class Trip {
     id:string;
+    userId:string;
     name:string;
     info:string;
     startsPoint:string;

@@ -27,9 +27,9 @@
               <a class="nav-link" [routerLink]="['register']">REGISTER</a>
             </li>         
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <form class="form-inline my-2 my-lg-0" *ngIf="isAuthorized" [formGroup]="searchForm">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchInput" formControlName="_searchInput"> 
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="seachInTrips()">Search</button>
       </form>
     </div>
   </nav>
