@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\gallery",
+    "\\src\\app\\nav-bar",
+    "\\src\\app\\services"
   ],
-  "SelectedNode": "\\e2e",
+  "SelectedNode": "\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
 }

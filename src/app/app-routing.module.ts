@@ -9,6 +9,7 @@ import { CreateRouteComponent } from './create-route/create-route.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { AuthGuard } from './services/auth-guard';
 import { SubscribedTripsComponent } from './subscribed-trips/subscribed-trips.component';
+import { SearchComponent } from './search/search.component';
 
  const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -16,9 +17,12 @@ import { SubscribedTripsComponent } from './subscribed-trips/subscribed-trips.co
     { path: 'all', component: RouteComponent, canActivate: [AuthGuard] },
     { path: 'subscribed', component: SubscribedTripsComponent, canActivate:[AuthGuard]},
     { path: 'new', component: CreateRouteComponent, canActivate: [AuthGuard] },
+    { path: 'edit/:id', component: CreateRouteComponent, canActivate: [AuthGuard] },
     { path: 'mytrips', component: UserTripsComponent, canActivate: [AuthGuard] },
     { path: 'route/:id', component: RouteDetailsComponent, canActivate: [AuthGuard] },
     { path: 'image/all/:id', component: GalleryComponent, canActivate: [AuthGuard] },
+    { path: 'search/:input', component: SearchComponent, canActivate: [AuthGuard] },
+
 ];
 
 @NgModule({

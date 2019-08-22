@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule, FormsModule, } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { Authorization } from './services/authorization';
 import { RouteComponent } from './route/route.component';
@@ -23,6 +23,8 @@ import { AuthGuard } from './services/auth-guard';
 import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
 import { SubscribedTripsComponent } from './subscribed-trips/subscribed-trips.component';
+import { InterceptorService } from './services/interceptor-service';
+import { SearchComponent } from './search/search.component';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -47,7 +49,8 @@ export function tokenGetter(){
     UserTripsComponent,
     CreateRouteComponent,
     GalleryComponent,
-    SubscribedTripsComponent
+    SubscribedTripsComponent,
+    SearchComponent
   ],
   imports: [
     FormsModule,
@@ -61,7 +64,23 @@ export function tokenGetter(){
     AngularFileUploaderModule
 
   ],
-  providers: [Authorization, EquipmentService, RoutesService, Subscriber, HttpProxy, AuthGuard],
+
+  exports:[
+  GalleryComponent
+  ],
+  providers: [
+    Authorization,
+    EquipmentService,
+    RoutesService,
+    Subscriber,
+    HttpProxy,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

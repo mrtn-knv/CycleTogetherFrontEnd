@@ -38,4 +38,8 @@ export class RoutesService {
    deleteRoute(id: string): Observable<boolean>{
       return this.htttp.delete(this.baseUrl+"route/"+id);
    }
+
+   edit(trip: Trip): Observable<Trip>{
+        return this.htttp.post(this.baseUrl+"edit", trip);
+   }
 }
