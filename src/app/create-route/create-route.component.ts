@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Equipment } from '../models/equipment';
 import { EquipmentService } from '../services/equipment-service';
 import { Terrain, Difficulty, Endurance, Type } from '../models/enums';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-route',
@@ -25,9 +25,10 @@ export class CreateRouteComponent implements OnInit {
   difficultyLabels: string[] = [];
   typeOfRouteLabels: string[] = [];
   routeForm: FormGroup;
+  isEditMode: boolean = false;
 
 
-  constructor(private routeService: RoutesService, private formBuilder:FormBuilder, private equipmentService: EquipmentService, private router:Router) {
+  constructor(private routeService: RoutesService, private formBuilder:FormBuilder, private equipmentService: EquipmentService, private router:Router, private activateRoute: ActivatedRoute) {
     this.routeForm = this.formBuilder.group({
        '_name':['', Validators.required],
        '_info':['', Validators.required],
@@ -46,14 +47,45 @@ export class CreateRouteComponent implements OnInit {
   ngOnInit() {
     this.equipmentService.getEquipments().subscribe(equipments => {
       this.routeEquipments = equipments;
-      console.log(this.routeEquipments);     
+      console.log(this.routeEquipments);    
+      
+      this.activateRoute.paramMap.subscribe(params => {
+        const tripId = params.get('id');
+        if(tripId){
+          debugger;
+            this.routeService.getRoute(tripId).subscribe((trip) => this.editRoute(trip));
+        }
+      });
+      
     });
 
     this.terrainLabels = this.getNames(this.terrain);
     this.difficultyLabels = this.getNames(this.difficulty);
     this.typeOfRouteLabels = this.getNames(this.typeRoute);  
     this.enduranceLabels = this.getNames(Endurance);
+  }
 
+  editRoute(route: Trip){    
+    this.isEditMode = true;
+    this.routeForm.patchValue({
+      _name: route.name,
+      _info: route.info,
+      _startDest: route.startsPoint,
+      _endDest: route.destination,
+      _startTime: route.startTime,
+      _terrain: route.terrain,
+      _typeOfRoute: route.type,
+      _endurance: route.endurance,
+      _difficulty: route.difficulty,
+      _suitableForKids: route.suitableForKids,
+      equipments: this.routeEquipments
+    });
+  }
+
+  saveChanges(){
+    this.routeService.edit(this.routeModel).subscribe((trip) => {
+      this.router.navigate(['route/:input',trip.id]);
+    });
   }
 
   addRoute(){
