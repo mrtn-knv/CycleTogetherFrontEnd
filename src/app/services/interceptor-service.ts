@@ -16,9 +16,8 @@ export class InterceptorService implements HttpInterceptor {
         return next.handle(req)
         .pipe(catchError((error) => {
             if(error.status === 401){
-                this.authentication.logout();               
-                this.router.navigate(['login']);
-                window.location.reload();             
+                this.authentication.logout().subscribe(() => this.router.navigate(['login']));
+                console.log(this.authentication.isAuthorized.value);  
             }
             return throwError(error);
         }));
