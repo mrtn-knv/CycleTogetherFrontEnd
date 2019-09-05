@@ -25,6 +25,9 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
 import { SubscribedTripsComponent } from './subscribed-trips/subscribed-trips.component';
 import { InterceptorService } from './services/interceptor-service';
 import { SearchComponent } from './search/search.component';
+import { InvitationComponent } from './invitation/invitation.component';
+import { InvitationService } from './services/invitation-service';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -50,7 +53,9 @@ export function tokenGetter(){
     CreateRouteComponent,
     GalleryComponent,
     SubscribedTripsComponent,
-    SearchComponent
+    SearchComponent,
+    InvitationComponent,
+    HomePageComponent
   ],
   imports: [
     FormsModule,
@@ -75,6 +80,8 @@ export function tokenGetter(){
     Subscriber,
     HttpProxy,
     AuthGuard,
+    InvitationService,
+    
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,

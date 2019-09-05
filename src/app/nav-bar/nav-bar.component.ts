@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Authorization } from '../services/authorization';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { AuthGuard } from '../services/auth-guard';
-import { SearchComponent } from '../search/search.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -17,11 +14,12 @@ export class NavBarComponent implements OnInit {
   isAuthorized: boolean;
   searchInput: string;
   searchForm: FormGroup;
-  constructor(private authorizator: Authorization, private router: Router, private builder: FormBuilder) {
-      this.searchForm = this.builder.group({
-          '_searchInput': ['']
-      });
 
+  constructor(private authorizator: Authorization, private router: Router, private formBuilder:FormBuilder) {  
+     
+    this.searchForm = this.formBuilder.group({
+      '_input':['']
+    });
    }
 
   ngOnInit() {  

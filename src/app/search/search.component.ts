@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SearchService } from '../services/search-service';
 import { TripSearchView } from '../models/trip-search-view';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -10,25 +10,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
-  hasMatch: boolean = false;
+  hasMatch:boolean;
   input: string;
-  foundTrips: TripSearchView[] = []
+  foundTrips: TripSearchView[] = [];
 
-  constructor(private searchEngine: SearchService, private router: Router, private activateRoute: ActivatedRoute) { }
+  constructor(public searchEngine: SearchService, private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activateRoute.paramMap.subscribe(params => {
-      this.input = params.get('input');           
+      this.input = params.get('input');                
     });
-      
+
     this.searchEngine.Search(this.input).subscribe(trips => {
-        this.foundTrips = trips;
-        if(trips){
-
-          this.hasMatch = true;
-        }
+      this.foundTrips = trips;
     });
-    
-  }
-
+  }      
 }

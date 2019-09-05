@@ -15,10 +15,10 @@ export class Subscriber {
     constructor(private http:HttpProxy){ }
        
     public subscribeForTrip(trip:Trip):Observable<boolean>{
-     return this.http.post(this.baseUrl+"route/subscribe", trip);
+     return this.http.post(this.baseUrl+"route/subscribe/"+trip.id, trip.id);
     }
+    
     public unsubscribeFromTrip(trip:Trip):Observable<boolean>{
-       return this.http.post(this.baseUrl+"route/unsubscribe", trip);
-       
+       return this.http.post(this.baseUrl+"route/unsubscribe/"+trip.id, trip.id);     
     }
 }

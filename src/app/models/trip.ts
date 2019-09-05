@@ -5,7 +5,7 @@ export class Trip {
     userId:string;
     name:string;
     info:string;
-    startsPoint:string;
+    startPoint:string;
     destination:string;
     startTime:Date;
     suitableForKids:boolean;
@@ -15,5 +15,7 @@ export class Trip {
     endurance: string;
     type: string;
     difficulty: string;
+    startHour: string;
+    dateFormatted: string;
 
 }

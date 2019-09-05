@@ -18,4 +18,13 @@ li{
 #logo{
     text-align: left;
 }
+/* 
+.bg-light{
 
+    background-color:#edf7f5 !important;
+} */
+
+.nav-item .active{
+    color: #5d5d5d !important;
+    font-weight: bold;
+}

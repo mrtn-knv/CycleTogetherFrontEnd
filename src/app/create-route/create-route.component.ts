@@ -46,8 +46,7 @@ export class CreateRouteComponent implements OnInit {
 
   ngOnInit() {
     this.equipmentService.getEquipments().subscribe(equipments => {
-      this.routeEquipments = equipments;
-      console.log(this.routeEquipments);    
+      this.routeEquipments = equipments;    
       
       this.activateRoute.paramMap.subscribe(params => {
         const tripId = params.get('id');
@@ -70,7 +69,7 @@ export class CreateRouteComponent implements OnInit {
     this.routeForm.patchValue({
       _name: route.name,
       _info: route.info,
-      _startDest: route.startsPoint,
+      _startDest: route.startPoint,
       _endDest: route.destination,
       _startTime: route.startTime,
       _terrain: route.terrain,
@@ -101,12 +100,10 @@ export class CreateRouteComponent implements OnInit {
     this.routeEquipments.find
     var current = this.routeModel.equipmentsIds.indexOf(equipment.id);
     if(current != -1){
-      this.routeModel.equipmentsIds.splice(current, 1);
-      console.log(this.routeModel.equipmentsIds);                  
+      this.routeModel.equipmentsIds.splice(current, 1);                  
     }
     else{
         this.routeModel.equipmentsIds.push(equipment.id);   
-        console.log(this.routeModel.equipmentsIds);
     }
   }
 

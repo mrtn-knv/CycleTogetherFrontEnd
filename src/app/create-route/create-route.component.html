@@ -7,23 +7,23 @@
       <div class="col-6">
 
           <div class="routeInput">
-              <label for="formGroupExampleInput" >NAME</label>
+              <label for="formGroupExampleInput" >NAME *</label>
               <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Name of the route" [(ngModel)]="routeModel.name" formControlName="_name">
             </div>
             <div class="routeInput">
-              <label for="formGroupExampleInput2">DESCRIPTION OF THE ROUTE</label>
+              <label for="formGroupExampleInput2">DESCRIPTION OF THE ROUTE *</label>
               <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Description" [(ngModel)]="routeModel.info" formControlName="_info">
             </div>
             <div class="routeInput">
-                <label for="formGroupExampleInput3">START DESTINATION</label>
-                <input type="text" class="form-control" id="formGroupExampleInput3" placeholder="Where does your destination start?" [(ngModel)]="routeModel.startsPoint" formControlName="_startDest">
+                <label for="formGroupExampleInput3">START DESTINATION *</label>
+                <input type="text" class="form-control" id="formGroupExampleInput3" placeholder="Where does your destination start?" [(ngModel)]="routeModel.startPoint" formControlName="_startDest">
               </div>
               <div class="routeInput">
-                  <label for="formGroupExampleInput4">END DESTINATION</label>
+                  <label for="formGroupExampleInput4">END DESTINATION *</label>
                   <input type="text" class="form-control" id="formGroupExampleInput4" placeholder="Where does your destination end?" [(ngModel)]="routeModel.destination" formControlName="_endDest">
                 </div>
                 <div class="routeInput">
-                  <label for="formGroupExampleInput5">START TIME</label>
+                  <label for="formGroupExampleInput5">START TIME *</label>
                   <input type="datetime-local" class="form-control" id="formGroupExampleInput4" [(ngModel)]="routeModel.startTime" formControlName="_startTime">
                 </div>
       

@@ -10,8 +10,11 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { AuthGuard } from './services/auth-guard';
 import { SubscribedTripsComponent } from './subscribed-trips/subscribed-trips.component';
 import { SearchComponent } from './search/search.component';
+import { InvitationComponent } from './invitation/invitation.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
  const routes: Routes = [
+    {path: 'home', component: HomePageComponent},
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'all', component: RouteComponent, canActivate: [AuthGuard] },
@@ -22,6 +25,7 @@ import { SearchComponent } from './search/search.component';
     { path: 'route/:id', component: RouteDetailsComponent, canActivate: [AuthGuard] },
     { path: 'image/all/:id', component: GalleryComponent, canActivate: [AuthGuard] },
     { path: 'search/:input', component: SearchComponent, canActivate: [AuthGuard] },
+    { path: 'invite/:id', component: InvitationComponent, canActivate:[AuthGuard] }
 
 ];
 

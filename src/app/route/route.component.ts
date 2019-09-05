@@ -3,6 +3,7 @@ import { Trip } from '../models/trip';
 import { RoutesService } from '../services/routes-service';
 import { Router } from '@angular/router';
 import { Picture } from '../models/picture';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -12,15 +13,25 @@ import { Picture } from '../models/picture';
 })
 export class RouteComponent implements OnInit {
 
-  routesModel: Trip[] = []; 
+  routesModel: Trip[] = [];
+   
 
   constructor(private routeService: RoutesService) { }
 
   ngOnInit() {
     this.routeService.getRoutes().subscribe(routesRes => {
       this.routesModel = routesRes;
-      console.log(this.routesModel);    
-  });
+        this.formatStartTime();      
+  }), (err) => console.log(err);
 
+  }
+
+  private formatStartTime() {
+    for (let route of this.routesModel) {
+      var pipe = new DatePipe('en-US');
+      route.dateFormatted = pipe.transform(route.startTime, 'fullDate');
+      route.startHour = pipe.transform(route.startTime, 'shortTime');
+    }
+    ;
   }
 }
