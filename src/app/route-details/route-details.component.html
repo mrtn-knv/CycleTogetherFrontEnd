@@ -8,6 +8,7 @@
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Starts from: {{ trip.startPoint }}</li>
       <li class="list-group-item">Ends at: {{ trip.destination }}</li>
+      <li class="list-group-item"><app-map [origin]="trip.startPoint" [destination]="trip.destination"></app-map></li>
       <li class="list-group-item">Starts at: {{ trip.startTime }}</li>
       <li class="list-group-item">Is suitable for kids: {{ trip.suitableForKids }}</li>
       <li class="list-group-item">People subscribed: {{ subscribedLenght }}</li>

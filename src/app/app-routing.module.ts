@@ -11,10 +11,9 @@ import { AuthGuard } from './services/auth-guard';
 import { SubscribedTripsComponent } from './subscribed-trips/subscribed-trips.component';
 import { SearchComponent } from './search/search.component';
 import { InvitationComponent } from './invitation/invitation.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import { MapComponent } from './map/map.component';
 
  const routes: Routes = [
-    {path: 'home', component: HomePageComponent},
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'all', component: RouteComponent, canActivate: [AuthGuard] },
