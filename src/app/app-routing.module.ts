@@ -12,6 +12,7 @@ import { SubscribedTripsComponent } from './subscribed-trips/subscribed-trips.co
 import { SearchComponent } from './search/search.component';
 import { InvitationComponent } from './invitation/invitation.component';
 import { MapComponent } from './map/map.component';
+import { HistoryComponent } from './history/history.component';
 
  const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -24,7 +25,8 @@ import { MapComponent } from './map/map.component';
     { path: 'route/:id', component: RouteDetailsComponent, canActivate: [AuthGuard] },
     { path: 'image/all/:id', component: GalleryComponent, canActivate: [AuthGuard] },
     { path: 'search/:input', component: SearchComponent, canActivate: [AuthGuard] },
-    { path: 'invite/:id', component: InvitationComponent, canActivate:[AuthGuard] }
+    { path: 'invite/:id', component: InvitationComponent, canActivate:[AuthGuard] },
+    { path: 'history', component: HistoryComponent, canActivate:[AuthGuard]}
 
 ];
 

@@ -73,6 +73,7 @@ export class CreateRouteComponent implements OnInit {
   }
 
   editRoute(route: Trip) {
+    //todo userId is not passed
     this.isEditMode = true;
     this.routeForm.patchValue({
       _name: route.name,

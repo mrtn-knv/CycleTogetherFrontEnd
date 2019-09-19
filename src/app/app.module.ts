@@ -31,6 +31,7 @@ import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';   
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { HistoryComponent } from './history/history.component';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -58,7 +59,8 @@ export function tokenGetter(){
     SubscribedTripsComponent,
     SearchComponent,
     InvitationComponent,
-    MapComponent
+    MapComponent,
+    HistoryComponent
   ],
   imports: [
     FormsModule,

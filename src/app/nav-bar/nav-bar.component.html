@@ -17,6 +17,9 @@
         <li class="nav-item active" *ngIf="isAuthorized">
           <a class="nav-link" [routerLink]="['subscribed']">SUBSCRIBED</a>
         </li>
+        <li class="nav-item active" *ngIf="isAuthorized">
+            <a class="nav-link" [routerLink]="['history']">HISTORY</a>
+          </li>
         <li class="nav-item active" *ngIf="isAuthorized" (click)="logOut()">
           <a class="nav-link">LOGOUT</a>
         </li>
