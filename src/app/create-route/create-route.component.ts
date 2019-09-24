@@ -6,6 +6,7 @@ import { Equipment } from '../models/equipment';
 import { EquipmentService } from '../services/equipment-service';
 import { Terrain, Difficulty, Endurance, Type } from '../models/enums';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-create-route',
@@ -26,6 +27,7 @@ export class CreateRouteComponent implements OnInit {
   typeOfRouteLabels: string[] = [];
   routeForm: FormGroup;
   isEditMode: boolean = false;
+  idUser: any;
 
 
   constructor(private routeService: RoutesService, private formBuilder:FormBuilder, private equipmentService: EquipmentService, private router:Router, private activateRoute: ActivatedRoute) {
@@ -51,7 +53,7 @@ export class CreateRouteComponent implements OnInit {
       this.activateRoute.paramMap.subscribe(params => {
         const tripId = params.get('id');
         if(tripId){
-          debugger;
+            this.routeModel.id = tripId;
             this.routeService.getRoute(tripId).subscribe((trip) => this.editRoute(trip));
         }
       });
@@ -64,7 +66,7 @@ export class CreateRouteComponent implements OnInit {
     this.enduranceLabels = this.getNames(Endurance);
   }
 
-  editRoute(route: Trip){    
+  editRoute(route: Trip){   
     this.isEditMode = true;
     this.routeForm.patchValue({
       _name: route.name,
@@ -82,8 +84,11 @@ export class CreateRouteComponent implements OnInit {
   }
 
   saveChanges(){
+    debugger;
+    this.getUserId();
+    this.routeModel.userId = this.idUser;
     this.routeService.edit(this.routeModel).subscribe((trip) => {
-      this.router.navigate(['route/:input',trip.id]);
+      this.router.navigate(['mytrips']);
     });
   }
 
@@ -110,5 +115,11 @@ export class CreateRouteComponent implements OnInit {
   getNames(types:any) :string[]{
     var options = Object.keys(types);
     return options.slice(options.length / 2);
+  }
+
+  private getUserId() {
+    let userToken = localStorage.getItem('token');
+    this.idUser = jwt_decode(userToken);
+    this.idUser = this.idUser.nameid;
   }
 }

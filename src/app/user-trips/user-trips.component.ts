@@ -25,6 +25,8 @@ export class UserTripsComponent implements OnInit {
         else{
           this.hasTrips = false;
         }
+    }, (err) => {
+      console.log(err);
     });
 
   }

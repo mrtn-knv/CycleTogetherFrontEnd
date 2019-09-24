@@ -40,6 +40,6 @@ export class RoutesService {
    }
 
    edit(trip: Trip): Observable<Trip>{
-        return this.htttp.post(this.baseUrl+"edit", trip);
+        return this.htttp.post(this.baseUrl+"route/edit", trip);
    }
 }
