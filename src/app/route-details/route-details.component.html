@@ -8,6 +8,7 @@
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Starts from: {{ trip.startPoint }}</li>
       <li class="list-group-item">Ends at: {{ trip.destination }}</li>
+      <li class="list-group-item"><app-map [origin]="trip.startPoint" [destination]="trip.destination"></app-map></li>
       <li class="list-group-item">Starts at: {{ trip.startTime }}</li>
       <li class="list-group-item">Is suitable for kids: {{ trip.suitableForKids }}</li>
       <li class="list-group-item">People subscribed: {{ subscribedLenght }}</li>
@@ -17,11 +18,11 @@
       <li class="list-group-item">Difficulty: {{ trip.difficulty }}</li>      
     </ul>
     <div class="card-body">
-      <button *ngIf="isSubscribed" (click)="unsubscribeFromRoute(trip)" class="btn btn-light">UNSUBSCRIBE</button>
-      <button *ngIf="!isSubscribed" (click)="subscribe(trip)" class="btn btn-light">SUBSCRIBE</button>
-      <button class="btn btn-light" *ngIf="isRouteOwner" (click)="delete(trip.id)">DELETE</button>
-      <button class="btn btn-light" [routerLink]="['/invite/', trip.id]">INVITE PEOPLE</button>
-      <button class="btn btn-light" *ngIf="isRouteOwner" [routerLink]="['/edit/', trip.id]">EDIT</button>
+      <button *ngIf="isSubscribed && !trip.isComplete" (click)="unsubscribeFromRoute(trip)" class="btn btn-light">UNSUBSCRIBE</button>
+      <button *ngIf="!isSubscribed && !trip.isComplete" (click)="subscribe(trip)" class="btn btn-light">SUBSCRIBE</button>
+      <button class="btn btn-light" *ngIf="isRouteOwner && !trip.isComplete" (click)="delete(trip.id)">DELETE</button>
+      <button *ngIf="!trip.isComplete" class="btn btn-light" [routerLink]="['/invite/', trip.id]">INVITE PEOPLE</button>
+      <button class="btn btn-light" *ngIf="isRouteOwner && !trip.isComplete" [routerLink]="['/edit/', trip.id]">EDIT</button>
       <button (click)="goToGallery(trip.id)" class="btn btn-light">GALLERY</button>
     </div>
   </div>

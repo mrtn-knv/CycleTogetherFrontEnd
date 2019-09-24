@@ -27,7 +27,11 @@ import { InterceptorService } from './services/interceptor-service';
 import { SearchComponent } from './search/search.component';
 import { InvitationComponent } from './invitation/invitation.component';
 import { InvitationService } from './services/invitation-service';
-import { HomePageComponent } from './home-page/home-page.component';
+import { MapComponent } from './map/map.component';
+import { AgmCoreModule } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction';   
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { HistoryComponent } from './history/history.component';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -55,7 +59,8 @@ export function tokenGetter(){
     SubscribedTripsComponent,
     SearchComponent,
     InvitationComponent,
-    HomePageComponent
+    MapComponent,
+    HistoryComponent
   ],
   imports: [
     FormsModule,
@@ -66,8 +71,12 @@ export function tokenGetter(){
     FormsModule,
     RouterModule,
     JwtModule.forRoot(JWT_Module_Options),
-    AngularFileUploaderModule
-
+    AngularFileUploaderModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBnM72vVFqGeINyI2eGu5zuQ9_wD2udgoI',
+    }),
+    AgmDirectionModule,
+    GooglePlaceModule
   ],
 
   exports:[

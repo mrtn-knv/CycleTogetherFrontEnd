@@ -6,38 +6,42 @@ import { Injectable } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
-    })
+})
 
 export class RoutesService {
 
-   private baseUrl :string = environment.url;
+    private baseUrl: string = environment.url;
 
-   constructor(private htttp:HttpProxy){}
+    constructor(private htttp: HttpProxy) { }
 
-   getRoutes():Observable<Trip[]>{
-       
-    return this.htttp.get(this.baseUrl+"route/all");
-   }
+    getRoutes(): Observable<Trip[]> {
 
-   getRoute(id:string):Observable<Trip>{
-       return this.htttp.get(this.baseUrl+"route/"+id);
-   }
+        return this.htttp.get(this.baseUrl + "route/all");
+    }
 
-   getRoutesByUser():Observable<Trip[]>{
-        return this.htttp.get(this.baseUrl+"route/all/mytrips");
-   }
+    getRoute(id: string): Observable<Trip> {
+        return this.htttp.get(this.baseUrl + "route/" + id);
+    }
 
-   createRoute(trip: Trip):Observable<boolean>{
-       return this.htttp.post(this.baseUrl+"route/new", trip);
-   }
+    getRoutesByUser(): Observable<Trip[]> {
+        return this.htttp.get(this.baseUrl + "route/all/mytrips");
+    }
 
-   getUserSubscriptions(): Observable<Trip[]>{
-       return this.htttp.get(this.baseUrl+"route/subscribed");
-   }
+    createRoute(trip: Trip): Observable<boolean> {
+        return this.htttp.post(this.baseUrl + "route/new", trip);
+    }
 
-   deleteRoute(id: string): Observable<boolean>{
-      return this.htttp.delete(this.baseUrl+"route/"+id);
-   }
+    getUserSubscriptions(): Observable<Trip[]> {
+        return this.htttp.get(this.baseUrl + "route/subscribed");
+    }
+
+    getUserHistory(): Observable<Trip[]> {
+        return this.htttp.get(this.baseUrl + "route/history");
+    }
+
+    deleteRoute(id: string): Observable<boolean> {
+        return this.htttp.delete(this.baseUrl + "route/" + id);
+    }
 
    edit(trip: Trip): Observable<Trip>{
         return this.htttp.post(this.baseUrl+"route/edit", trip);

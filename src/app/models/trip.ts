@@ -17,5 +17,5 @@ export class Trip {
     difficulty: string;
     startHour: string;
     dateFormatted: string;
-
+    isComplete: boolean;
 }
