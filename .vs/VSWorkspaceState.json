@@ -3,10 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\gallery",
+    "\\src\\app\\create-route",
+    "\\src\\app\\invitation",
+    "\\src\\app\\login",
     "\\src\\app\\nav-bar",
-    "\\src\\app\\services"
+    "\\src\\app\\search",
+    "\\src\\app\\services",
+    "\\src\\app\\user-trips"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\app\\services\\invitation-service.ts",
   "PreviewInSolutionExplorer": false
 }
