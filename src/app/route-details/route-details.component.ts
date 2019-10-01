@@ -1,11 +1,11 @@
 import { OnInit } from '@angular/core';
 import{ Component } from '@angular/core';
-import { Trip } from '../models/trip';
+import { Trip } from '../_models/trip';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RoutesService } from '../services/routes-service';
-import { Subscriber } from '../services/subscriber';
-import { SubscribedUsers } from '../models/subscribed-users';
-import * as jwt_decode from "jwt-decode";
+import { RoutesService } from '../_services/routes-service';
+import { Subscriber } from '../_services/subscriber';
+import { SubscribedUsers } from '../_models/subscribed-users';
+import { TokenGetter } from '../_helpers/token-getter';
 
 @Component({
   selector: 'app-route-details',
@@ -19,18 +19,21 @@ export class RouteDetailsComponent implements OnInit {
   subscribedLenght: number;
   subscribed:SubscribedUsers[];
   isSubscribed:boolean = false;
-  currentUserId:string;
   routes: Trip[] = [];
-  decodedToken:any;
+  userId: string;
   isRouteOwner: boolean;
+  errorMsg: string;
 
-
-  constructor(private activateRoute: ActivatedRoute, private router:Router, private  routeService: RoutesService, private subscriber:Subscriber) {
+  constructor(private activateRoute: ActivatedRoute,
+              private router:Router,
+              private  routeService: RoutesService,
+              private subscriber:Subscriber,
+              private idGetter: TokenGetter) {
    
   }
 
   ngOnInit() {
-    this.getUserId();
+    this.userId = this.idGetter.getUserId();
     this.activateRoute.paramMap.subscribe(params => {
       this.id = params.get('id');     
     })
@@ -39,14 +42,15 @@ export class RouteDetailsComponent implements OnInit {
       this.isRouteOwner = this.isOwner(routeRes.userId);   
       this.subscribedLenght = this.trip.subscribed.length;
       this.subscribed = routeRes.subscribed;
-      this.isSubscribed = this.isUserSubscribed(this.subscribed);              
+      this.isSubscribed = this.isUserSubscribed(this.subscribed);
+      console.log(this.trip);              
     })
     
      
   }
 
   private isOwner(routeCreator: string) : boolean {
-    if (this.currentUserId !== routeCreator) {
+    if (this.userId !== routeCreator) {
       return  false;
     }
     else{
@@ -61,20 +65,14 @@ export class RouteDetailsComponent implements OnInit {
 
   isUserSubscribed(subscrubed:SubscribedUsers[]):boolean{
  
-       this.getUserId();
+       this.userId = this.idGetter.getUserId();
 
        for (var val of subscrubed) {
-        if(val.userId == this.currentUserId){
+        if(val.userId == this.userId){
           return true;
         }
       }
        return false;
-  }
-
-  private getUserId() {
-    let token = localStorage.getItem('token');
-    this.decodedToken = jwt_decode(token);
-    this.currentUserId = this.decodedToken.nameid;
   }
 
   delete(id:string){
@@ -91,6 +89,7 @@ export class RouteDetailsComponent implements OnInit {
   subscribe(subs:Trip){
   this.subscriber.subscribeForTrip(subs).subscribe((res) =>{
     if(!res){
+
       alert("You cant subscribe for this trip.");
     }
     else{
@@ -98,9 +97,7 @@ export class RouteDetailsComponent implements OnInit {
       this.subscribedLenght++;
     }
 
-    }, err => {
-    console.log(err);
-    })
+    });
   }
 
   unsubscribeFromRoute(trip:Trip){

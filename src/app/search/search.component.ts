@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SearchService } from '../services/search-service';
-import { TripSearchView } from '../models/trip-search-view';
+import { SearchService } from '../_services/search-service';
+import { TripSearchView } from '../_models/trip-search-view';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -8,21 +8,25 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
-
+export class SearchComponent implements OnInit {  
+  
   hasMatch:boolean;
   input: string;
   foundTrips: TripSearchView[] = [];
 
-  constructor(public searchEngine: SearchService, private activateRoute: ActivatedRoute) { }
+  constructor(private searchEngine: SearchService, 
+              private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activateRoute.paramMap.subscribe(params => {
       this.input = params.get('input');                
-    });
-
-    this.searchEngine.Search(this.input).subscribe(trips => {
-      this.foundTrips = trips;
-    });
-  }      
+      });
+      
+      this.searchEngine.Search(this.input).subscribe(result => {
+        this.foundTrips = result;
+        console.log(this.foundTrips);
+      }, err => {
+        console.log(err);
+      });
+  }
 }

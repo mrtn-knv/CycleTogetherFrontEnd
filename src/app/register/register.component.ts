@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
-import { User } from '../models/user';
-import { Terrain, Type, Difficulty, Endurance} from '../models/enums';
-import { Authorization} from '../services/authorization';
+import { User } from '../_models/user';
+import { Terrain, Type, Difficulty, Endurance} from '../_models/enums';
+import { Authorization} from '../_services/authorization';
 import { Router } from '@angular/router';
-import { EquipmentService } from '../services/equipment-service';
-import { Equipment } from '../models/equipment';
+import { EquipmentService } from '../_services/equipment-service';
+import { Equipment } from '../_models/equipment';
 
 @Component({
   selector: 'app-register',

@@ -1,14 +1,8 @@
-.routes{
-   list-style: none; 
-}
-a{
-   font-size: 1.3rem;
-   font-weight: 400;
-}
-.routes-container{
-    padding: 6%;
+.container{
+    margin: 2%;
 }
 
-.col-sm-4{
-    padding:1%;
+.details-btn{
+    position: absolute;
+    bottom: 1%;
 }

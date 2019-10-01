@@ -1,8 +1,8 @@
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { User } from '../models/user';
-import { Login } from '../models/login';
+import { User } from '../_models/user';
+import { Login } from '../_models/login';
 import { HttpProxy } from './http-proxy';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -50,8 +50,4 @@ export class Authorization {
        return !this.jwtHelper.isTokenExpired(token);
        
    }
-
-//    public Test(): Observable<boolean>{
-//        return this.isAuthorized.asObservable();
-//    }
 }

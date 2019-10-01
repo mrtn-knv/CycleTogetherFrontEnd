@@ -6,7 +6,8 @@
     color: #383737;
 }
 .nav-bar{
-    background-color:#cceabe;
+
+    background-color:#fbfbfb !important;
     
     height: 4.2rem;
 }
@@ -18,11 +19,11 @@ li{
 #logo{
     text-align: left;
 }
-/* 
+
 .bg-light{
 
-    background-color:#edf7f5 !important;
-} */
+    background-color:#fbfbfb !important;
+}
 
 .nav-item .active{
     color: #5d5d5d !important;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Login } from '../models/login';
+import { Login } from '../_models/login';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Authorization } from '../services/authorization';
+import { Authorization } from '../_services/authorization';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 

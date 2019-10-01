@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { InvitationService } from '../services/invitation-service';
+import { InvitationService } from '../_services/invitation-service';
 
 @Component({
   selector: 'app-invitation',

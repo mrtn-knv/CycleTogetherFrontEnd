@@ -1,4 +1,4 @@
-  <div class="routes-container">
+  <!-- <div class="routes-container">
       <ul>
         <li class="routes">
           <div class="container">
@@ -16,7 +16,22 @@
           </div>                
         </li>        
       </ul>
+  </div> -->
+
+  <div class="container" *ngFor="let route of foundTrips">
+    <div class="row">
+      <div class="col-md-7">
+        <a href="#">
+          <img class="img-fluid rounded mb-3 mb-md-0" src="http://127.0.0.1:8887/http___cdn.coresites.factorymedia.com_twc_wp-content_uploads_2014_09_autumn2.jpg" alt="">
+        </a>
+      </div>
+      <div class="col-md-5">
+        <h3>{{ route.name }}</h3>
+        <h6> <br> {{ route.dateFormatted }}   AT {{ route.startHour }}</h6>
+        <p>{{route.info}}</p>
+        <a class="btn btn-outline-info details-btn" [routerLink]="['/route/', route.id]">DETAILS</a>
+      </div>
+    </div>
+    <hr>
   </div>
-
-
 

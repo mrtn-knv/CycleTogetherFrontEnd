@@ -7,12 +7,13 @@ import { RouteDetailsComponent } from './route-details/route-details.component';
 import { UserTripsComponent } from './user-trips/user-trips.component';
 import { CreateRouteComponent } from './create-route/create-route.component';
 import { GalleryComponent } from './gallery/gallery.component';
-import { AuthGuard } from './services/auth-guard';
+import { AuthGuard } from './_services/auth-guard';
 import { SubscribedTripsComponent } from './subscribed-trips/subscribed-trips.component';
 import { SearchComponent } from './search/search.component';
 import { InvitationComponent } from './invitation/invitation.component';
 import { MapComponent } from './map/map.component';
 import { HistoryComponent } from './history/history.component';
+import { EditRouteComponent } from './edit-route/edit-route.component';
 
  const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -20,13 +21,13 @@ import { HistoryComponent } from './history/history.component';
     { path: 'all', component: RouteComponent, canActivate: [AuthGuard] },
     { path: 'subscribed', component: SubscribedTripsComponent, canActivate:[AuthGuard]},
     { path: 'new', component: CreateRouteComponent, canActivate: [AuthGuard] },
-    { path: 'edit/:id', component: CreateRouteComponent, canActivate: [AuthGuard] },
     { path: 'mytrips', component: UserTripsComponent, canActivate: [AuthGuard] },
     { path: 'route/:id', component: RouteDetailsComponent, canActivate: [AuthGuard] },
     { path: 'image/all/:id', component: GalleryComponent, canActivate: [AuthGuard] },
     { path: 'search/:input', component: SearchComponent, canActivate: [AuthGuard] },
     { path: 'invite/:id', component: InvitationComponent, canActivate:[AuthGuard] },
-    { path: 'history', component: HistoryComponent, canActivate:[AuthGuard]}
+    { path: 'history', component: HistoryComponent, canActivate:[AuthGuard]},
+    { path: 'edit/:id', component: EditRouteComponent, canActivate:[AuthGuard] }
 
 ];
 

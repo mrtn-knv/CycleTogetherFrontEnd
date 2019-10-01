@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpProxy } from './http-proxy';
 import { environment } from 'src/environments/environment';
-import { Picture } from '../models/picture';
+import { Picture } from '../_models/picture';
 import { Observable } from 'rxjs';
 
 @Injectable({

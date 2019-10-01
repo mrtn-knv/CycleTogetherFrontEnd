@@ -1,8 +1,9 @@
-import { environment } from 'src/environments/environment';
-import { HttpProxy } from './http-proxy';
+import { environment } from '../../environments/environment';
+import { HttpProxy } from '../_services/http-proxy';
 import { Observable } from 'rxjs';
-import { Trip } from '../models/trip';
+import { Trip } from '../_models/trip';
 import { Injectable } from '@angular/core';
+import { TripView } from '../_models/trip-view';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,7 @@ export class RoutesService {
 
     constructor(private htttp: HttpProxy) { }
 
-    getRoutes(): Observable<Trip[]> {
+    getRoutes(): Observable<TripView[]> {
 
         return this.htttp.get(this.baseUrl + "route/all");
     }
@@ -32,11 +33,11 @@ export class RoutesService {
     }
 
     getUserSubscriptions(): Observable<Trip[]> {
-        return this.htttp.get(this.baseUrl + "route/subscribed");
+        return this.htttp.get(this.baseUrl + "subscribe/subscribed");
     }
 
     getUserHistory(): Observable<Trip[]> {
-        return this.htttp.get(this.baseUrl + "route/history");
+        return this.htttp.get(this.baseUrl + "subscribe/history");
     }
 
     deleteRoute(id: string): Observable<boolean> {

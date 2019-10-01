@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Trip } from '../models/trip';
-import { RoutesService } from '../services/routes-service';
-import { Router } from '@angular/router';
-import { Picture } from '../models/picture';
-import { DatePipe } from '@angular/common';
+import { Trip } from '../_models/trip';
+import { RoutesService } from '../_services/routes-service';
+import { DataFormatter } from '../_helpers/data-formatter';
+import { TripView } from '../_models/trip-view';
 
 
 @Component({
@@ -13,25 +12,17 @@ import { DatePipe } from '@angular/common';
 })
 export class RouteComponent implements OnInit {
 
-  routesModel: Trip[] = [];
+  routesModel: TripView[] = [];
    
 
-  constructor(private routeService: RoutesService) { }
+  constructor(private routeService: RoutesService,private dataFormat: DataFormatter) { }
 
   ngOnInit() {
     this.routeService.getRoutes().subscribe(routesRes => {
       this.routesModel = routesRes;
-        this.formatStartTime();      
+      console.log(this.routesModel);
+        this.dataFormat.formatStartTime(this.routesModel);      
   }), (err) => console.log(err);
 
-  }
-
-  private formatStartTime() {
-    for (let route of this.routesModel) {
-      var pipe = new DatePipe('en-US');
-      route.dateFormatted = pipe.transform(route.startTime, 'fullDate');
-      route.startHour = pipe.transform(route.startTime, 'shortTime');
-    }
-    ;
   }
 }

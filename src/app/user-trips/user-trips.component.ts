@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RoutesService } from '../services/routes-service';
-import { Trip } from '../models/trip';
+import { RoutesService } from '../_services/routes-service';
+import { Trip } from '../_models/trip';
+import { DataFormatter } from '../_helpers/data-formatter';
 
 @Component({
   selector: 'app-user-trips',
@@ -13,13 +14,14 @@ export class UserTripsComponent implements OnInit {
   hasTrips: boolean = true;
   id:string;
 
-  constructor(private routeService: RoutesService) { }
+  constructor(private routeService: RoutesService, private dateFormat: DataFormatter) { }
 
   ngOnInit() {
       this.routeService.getRoutesByUser().subscribe(routes =>{
         this.userTrips = routes;
         if(this.userTrips){
           this.hasTrips = true;
+          this.dateFormat.formatStartTime(this.userTrips);
 
         }
         else{

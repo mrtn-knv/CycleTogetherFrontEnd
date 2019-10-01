@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RoutesService } from '../services/routes-service';
-import { Trip } from '../models/trip';
+import { RoutesService } from '../_services/routes-service';
+import { Trip } from '../_models/trip';
+import { DataFormatter } from '../_helpers/data-formatter';
 
 @Component({
   selector: 'app-history',
@@ -8,11 +9,18 @@ import { Trip } from '../models/trip';
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
-  trips: Trip[];
-  constructor(private routeService: RoutesService) { }
+  trips: Trip[] = [];
+
+  constructor(private routeService: RoutesService, private dateFormat: DataFormatter) { }
 
   ngOnInit() {
-    this.routeService.getUserHistory().subscribe(trips=>this.trips=trips);
+    this.routeService.getUserHistory().subscribe(trips=> {
+      this.trips = trips;
+      this.dateFormat.formatStartTime(this.trips);
+    }, (err) => {
+      console.log(err);
+    });
+    
   }
 
 }

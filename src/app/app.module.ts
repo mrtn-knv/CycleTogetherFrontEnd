@@ -6,32 +6,37 @@ import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule, FormsModule, } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { Authorization } from './services/authorization';
+import { Authorization } from './_services/authorization';
 import { RouteComponent } from './route/route.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
-import { EquipmentService } from './services/equipment-service';
-import { RoutesService } from './services/routes-service';
+import { EquipmentService } from './_services/equipment-service';
+import { RoutesService } from './_services/routes-service';
 import { RouteDetailsComponent } from './route-details/route-details.component';
 import { UserTripsComponent } from './user-trips/user-trips.component';
 import { CreateRouteComponent } from './create-route/create-route.component';
 import { RouterModule } from '@angular/router';
 import { GalleryComponent } from './gallery/gallery.component';
-import { Subscriber } from './services/subscriber';
-import { HttpProxy } from './services/http-proxy';
-import { AuthGuard } from './services/auth-guard';
+import { Subscriber } from './_services/subscriber';
+import { HttpProxy } from './_services/http-proxy';
+import { AuthGuard } from './_services/auth-guard';
 import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
 import { SubscribedTripsComponent } from './subscribed-trips/subscribed-trips.component';
-import { InterceptorService } from './services/interceptor-service';
+import { InterceptorService } from './_services/interceptor-service';
 import { SearchComponent } from './search/search.component';
 import { InvitationComponent } from './invitation/invitation.component';
-import { InvitationService } from './services/invitation-service';
+import { InvitationService } from './_services/invitation-service';
 import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';   
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { HistoryComponent } from './history/history.component';
+import { DataFormatter } from './_helpers/data-formatter';
+import { TokenGetter } from './_helpers/token-getter';
+import { EditRouteComponent } from './edit-route/edit-route.component';
+import { EnumNameGetter } from './_helpers/enum-name-getter';
+import { SharedService } from './_services/shared-service';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -60,7 +65,8 @@ export function tokenGetter(){
     SearchComponent,
     InvitationComponent,
     MapComponent,
-    HistoryComponent
+    HistoryComponent,
+    EditRouteComponent
   ],
   imports: [
     FormsModule,
@@ -90,6 +96,9 @@ export function tokenGetter(){
     HttpProxy,
     AuthGuard,
     InvitationService,
+    DataFormatter,
+    TokenGetter,
+    EnumNameGetter,
     
     {
       provide: HTTP_INTERCEPTORS,

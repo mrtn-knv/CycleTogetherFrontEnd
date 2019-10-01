@@ -4,13 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\create-route",
+    "\\src\\app\\home-page",
     "\\src\\app\\invitation",
-    "\\src\\app\\login",
-    "\\src\\app\\nav-bar",
-    "\\src\\app\\search",
-    "\\src\\app\\services",
-    "\\src\\app\\user-trips"
+    "\\src\\app\\map",
+    "\\src\\app\\models",
+    "\\src\\app\\route-details",
+    "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\services\\invitation-service.ts",
+  "SelectedNode": "\\src\\app\\create-route\\create-route.component.ts",
   "PreviewInSolutionExplorer": false
 }

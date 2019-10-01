@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpProxy } from './http-proxy';
 import { Observable } from 'rxjs';
-import { TripSearchView } from '../models/trip-search-view';
+import { TripSearchView } from '../_models/trip-search-view';
 
 @Injectable({
     providedIn: 'root'

@@ -1,6 +1,6 @@
 import { environment } from 'src/environments/environment';
 import { HttpProxy } from './http-proxy';
-import { Equipment } from '../models/equipment';
+import { Equipment } from '../_models/equipment';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
@@ -10,7 +10,7 @@ providedIn: 'root'
 
 export class EquipmentService {
 
-    private baseUrl: string=environment.url;
+    private baseUrl: string = environment.url;
 
     constructor(private http: HttpProxy){ }
 

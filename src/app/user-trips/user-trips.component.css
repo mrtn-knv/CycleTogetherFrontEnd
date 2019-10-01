@@ -1,20 +1,8 @@
-.routes-container{
-    padding: 2%;
-
-}
-
 .container{
-    padding-top: 2%;   
+    margin: 2%;
 }
 
-.routes{
-    list-style: none; 
-}
-
-.card{
-    width: 18rem;
-}
-
-.col-sm{
-    padding: 3%;
+.details-btn{
+    position: absolute;
+    bottom: 1%;
 }

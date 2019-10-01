@@ -1,17 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Trip } from '../models/trip';
-import { RoutesService } from '../services/routes-service';
+import { Trip } from '../_models/trip';
+import { RoutesService } from '../_services/routes-service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Equipment } from '../models/equipment';
-import { EquipmentService } from '../services/equipment-service';
-import { Terrain, Difficulty, Endurance, Type } from '../models/enums';
+import { Equipment } from '../_models/equipment';
+import { EquipmentService } from '../_services/equipment-service';
+import { Terrain, Difficulty, Endurance, Type } from '../_models/enums';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as jwt_decode from "jwt-decode";
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { debounceTime, distinctUntilChanged, filter, switchMap, takeUntil } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs';
-import { GeocodingService } from '../services/geocoding-service';
+import { Subject } from 'rxjs';
+import { GeocodingService } from '../_services/geocoding-service';
+import { TokenGetter } from '../_helpers/token-getter';
 
 @Component({
   selector: 'app-create-route',
@@ -28,14 +29,21 @@ export class CreateRouteComponent implements OnInit {
   typeRoute = Type;
   enduranceLabels: string[] = [];
   terrainLabels: string[] = [];
-  difficultyLabels: string[] = [];
   typeOfRouteLabels: string[] = [];
+  difficultyLabels: string[] = [];
   routeForm: FormGroup;
   isEditMode: boolean = false;
+  token:any;
   idUser: any;
 
 
-  constructor(private routeService: RoutesService, private formBuilder: FormBuilder, private equipmentService: EquipmentService, private router: Router, private activateRoute: ActivatedRoute, private geocodingService: GeocodingService) {
+  constructor(private routeService: RoutesService,
+              private formBuilder: FormBuilder, 
+              private equipmentService: EquipmentService, 
+              private router: Router, 
+              private activateRoute: ActivatedRoute, 
+              private geocodingService: GeocodingService,
+              private tokenGetter: TokenGetter) {
     this.routeForm = this.formBuilder.group({
       '_name': ['', Validators.required],
       '_info': ['', Validators.required],
@@ -92,20 +100,20 @@ export class CreateRouteComponent implements OnInit {
   }
 
   saveChanges() {
-    this.routeModel.userId = this.idUser;
+    this.routeModel.userId = this.tokenGetter.getUserId();
     this.routeService.edit(this.routeModel).subscribe((trip) => {
-      this.router.navigate(['route/:input', trip.id]);
+      this.router.navigate(['route/'+ trip.id]);
     });
   }
 
-  getUserId(){
-    let token = localStorage.getItem('token');
-    let decodedToken = jwt_decode(token);
-    this.idUser = decodedToken.nameid;
-  }
+  // private getUserId(){
+  //   let token = localStorage.getItem('token');
+  //   this.token = jwt_decode(token);
+  //   this.idUser = this.token.nameid;
+  // }
 
   addRoute() {
-    console.log(this.routeModel);
+    this.routeModel.userId = this.tokenGetter.getUserId();
     this.routeService.createRoute(this.routeModel).subscribe((ok) => {
       this.router.navigate(['mytrips']);
       console.log(this.routeModel);

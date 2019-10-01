@@ -1,7 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Gallery } from '../services/gallery';
-import { Picture } from '../models/picture';
+import { Gallery } from '../_services/gallery';
+import { Picture } from '../_models/picture';
 import { EventEmitter } from 'events';
 
 class ImageSnippet{
