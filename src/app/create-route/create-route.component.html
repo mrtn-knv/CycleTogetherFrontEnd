@@ -1,120 +1,124 @@
-<form [formGroup]="routeForm">
+<div class="page-container">
 
-  <div class="container">
-
-    <div class="row">
-
-      <div class="col-6">
-
-        <div class="routeInput">
-          <label for="formGroupExampleInput">NAME *</label>
-          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Name of the route"
-            [(ngModel)]="routeModel.name" formControlName="_name">
-        </div>
-        <div class="routeInput">
-          <label for="formGroupExampleInput2">DESCRIPTION OF THE ROUTE *</label>
-          <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Description"
-            [(ngModel)]="routeModel.info" formControlName="_info">
-        </div>
-        <div class="routeInput">
-          <label for="formGroupExampleInput3">START DESTINATION *</label>
-          <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"
-            (onAddressChange)="changeStartPoint($event)" type="text" class="form-control" id="formGroupExampleInput3"
-            placeholder="Where does your destination start?" formControlName="_startDest"
-            [ngClass]="{ 'is-invalid': routeForm.controls._startDest.valid && !routeModel.startPoint }">
-          <div *ngIf="routeForm.controls._startDest.valid && !routeModel.startPoint" class="invalid-feedback">
-            <div>Invalid address</div>
+  <form [formGroup]="routeForm">
+    <div class="container">
+  
+      <div class="row">
+  
+        <div class="col-6">
+  
+          <div class="routeInput">
+            <label for="formGroupExampleInput">NAME *</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Name of the route"
+              [(ngModel)]="routeModel.name" formControlName="_name">
           </div>
-        </div>
-        <div class="routeInput">
-          <label for="formGroupExampleInput4">END DESTINATION *</label>
-          <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"
-            (onAddressChange)="changeDestination($event)" type="text" class="form-control" id="formGroupExampleInput4"
-            placeholder="Where does your destination end?" formControlName="_endDest"
-            [ngClass]="{ 'is-invalid': routeForm.controls._endDest.valid && !routeModel.destination }">
-            <div *ngIf="routeForm.controls._endDest.valid && !routeModel.destination" class="invalid-feedback">
-                <div>Invalid address</div>
-              </div>
-        </div>
-        <app-map *ngIf="routeModel.startPoint && routeModel.destination" [origin]="routeModel.startPoint"
-          [destination]="routeModel.destination"></app-map>
-        <div class="routeInput">
-          <label for="formGroupExampleInput5">START TIME *</label>
-          <input type="datetime-local" class="form-control" id="formGroupExampleInput4"
-            [(ngModel)]="routeModel.startTime" formControlName="_startTime">
-        </div>
-
-      </div>
-
-      <div class="col-6">
-        <label class="label">TERRAIN TYPE :</label>
-        <div class="form-check">
-          <select class="custom-select" [(ngModel)]="routeModel.terrain" formControlName="_terrain">
-            <option *ngFor="let name of terrainLabels">{{ name }}</option>
-          </select>
-        </div>
-        <label class="label">ENDURANCE NEEDED :</label>
-        <div class="form-check">
-          <select class="custom-select" [(ngModel)]="routeModel.endurance" formControlName="_endurance">
-            <option *ngFor="let name of enduranceLabels">{{ name }}</option>
-          </select>
-        </div>
-        <label class="label">TYPE OF ROUTE :</label>
-        <div class="form-check">
-          <select class="custom-select" [(ngModel)]="routeModel.type" formControlName="_typeOfRoute">
-            <option *ngFor="let name of typeOfRouteLabels">{{ name }}</option>
-          </select>
-        </div>
-
-        <label class="label">IS IT SUITABLE FOR KIDS?</label>
-        <br />
-        <label class="radionBtns">
-          <input type="radio" [(ngModel)]="routeModel.suitableForKids" [value]="true"
-            formControlName="_suitableForKids">
-          YES
-        </label>
-        <br />
-        <label class="radionBtns">
-          <input type="radio" [(ngModel)]="routeModel.suitableForKids" [value]="false"
-            formControlName="_suitableForKids">
-          NO
-        </label>
-        <br />
-
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <div class="col-6">
-        <div class="equipmentContainer">
-          <label class="label">EQUIPMENTS NEEDED :</label>
-          <div>
-            <ul class="list-group">
-              <li class="list-group-item">
-                <div>
-                  <label *ngFor="let equipment of routeEquipments" class="equip">
-                    <input type="checkbox" formControlName="equipments" (click)="addToEquipments(equipment)" />
-                    {{ equipment.name }}
-                  </label>
+          <div class="routeInput">
+            <label for="formGroupExampleInput2">DESCRIPTION OF THE ROUTE *</label>
+            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Description"
+              [(ngModel)]="routeModel.info" formControlName="_info">
+          </div>
+          <div class="routeInput">
+            <label for="formGroupExampleInput3">START DESTINATION *</label>
+            <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"
+              (onAddressChange)="changeStartPoint($event)" type="text" class="form-control" id="formGroupExampleInput3"
+              placeholder="Where does your destination start?" formControlName="_startDest"
+              [ngClass]="{ 'is-invalid': routeForm.controls._startDest.valid && !routeModel.startPoint }">
+            <div *ngIf="routeForm.controls._startDest.valid && !routeModel.startPoint" class="invalid-feedback">
+              <div>Invalid address</div>
+            </div>
+          </div>
+          <div class="routeInput">
+            <label for="formGroupExampleInput4">END DESTINATION *</label>
+            <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places"
+              (onAddressChange)="changeDestination($event)" type="text" class="form-control" id="formGroupExampleInput4"
+              placeholder="Where does your destination end?" formControlName="_endDest"
+              [ngClass]="{ 'is-invalid': routeForm.controls._endDest.valid && !routeModel.destination }">
+              <div *ngIf="routeForm.controls._endDest.valid && !routeModel.destination" class="invalid-feedback">
+                  <div>Invalid address</div>
                 </div>
-              </li>
-            </ul>
+          </div>
+          <app-map *ngIf="routeModel.startPoint && routeModel.destination" [origin]="routeModel.startPoint"
+            [destination]="routeModel.destination"></app-map>
+          <div class="routeInput">
+            <label for="formGroupExampleInput5">START TIME *</label>
+            <input type="datetime-local" class="form-control" id="formGroupExampleInput4"
+              [(ngModel)]="routeModel.startTime" formControlName="_startTime">
+          </div>
+  
+        </div>
+  
+        <div class="col-6">
+          <label class="label">TERRAIN TYPE :</label>
+          <div class="form-check">
+            <select class="custom-select" [(ngModel)]="routeModel.terrain" formControlName="_terrain">
+              <option *ngFor="let name of terrainLabels">{{ name }}</option>
+            </select>
+          </div>
+          <label class="label">ENDURANCE NEEDED :</label>
+          <div class="form-check">
+            <select class="custom-select" [(ngModel)]="routeModel.endurance" formControlName="_endurance">
+              <option *ngFor="let name of enduranceLabels">{{ name }}</option>
+            </select>
+          </div>
+          <label class="label">TYPE OF ROUTE :</label>
+          <div class="form-check">
+            <select class="custom-select" [(ngModel)]="routeModel.type" formControlName="_typeOfRoute">
+              <option *ngFor="let name of typeOfRouteLabels">{{ name }}</option>
+            </select>
+          </div>
+          <div class="kids-radio">
+              <label class="label">IS IT SUITABLE FOR KIDS?</label>
+                    <br />
+                <label class="radionBtns">
+                    <input type="radio" [(ngModel)]="routeModel.suitableForKids" [value]="true"
+                  formControlName="_suitableForKids">
+                     YES
+                </label>
+                      <br />
+              <label class="radionBtns">
+                    <input type="radio" [(ngModel)]="routeModel.suitableForKids" [value]="false"
+                  formControlName="_suitableForKids">
+                      NO
+              </label>
+                      <br />
+  
+              </div>
+         
+  
+        </div>
+  
+      </div>
+  
+      <div class="row">
+  
+        <div class="col">
+          <div class="equipmentContainer">
+            <label class="label">EQUIPMENTS NEEDED :</label>
+            <div>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <div>
+                    <label *ngFor="let equipment of routeEquipments" class="equip">
+                      <input type="checkbox" formControlName="equipments" (click)="addToEquipments(equipment)" />
+                      {{ equipment.name }}
+                    </label>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-
+  
+  
+      <div id="createBtn">
+        <button type="submit" [disabled]="!routeForm.valid || !routeModel.startPoint || !routeModel.destination"
+          *ngIf="!isEditMode" class="btn btn-outline-primary" (click)="addRoute()">CREATE</button>
+        <button type="submit" [disabled]="!routeForm.valid || !routeModel.startPoint || !routeModel.destination"
+          *ngIf="isEditMode" class="btn btn-outline-primary" (click)="saveChanges()">SAVE CHANGES</button>
+      </div>
     </div>
+  </form>
 
+</div>
 
-    <div id="createBtn">
-      <button type="submit" [disabled]="!routeForm.valid || !routeModel.startPoint || !routeModel.destination"
-        *ngIf="!isEditMode" class="btn btn-outline-primary" (click)="addRoute()">CREATE</button>
-      <button type="submit" [disabled]="!routeForm.valid || !routeModel.startPoint || !routeModel.destination"
-        *ngIf="isEditMode" class="btn btn-outline-primary" (click)="saveChanges()">SAVE CHANGES</button>
-    </div>
-  </div>
-
-
-</form>

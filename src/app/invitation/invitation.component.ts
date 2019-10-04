@@ -22,10 +22,7 @@ export class InvitationComponent implements OnInit {
   }
 
   onSubmit(email:string){
-    console.log(email);
     this.reveiversEmails = email.split(" ");
-    console.log(this.reveiversEmails);
-    debugger;
     this.invitationSender.invitePeople(this.reveiversEmails, this.routeId).subscribe(res => {
       if(res){
         this.router.navigate(["route/"+this.routeId]);

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpProxy } from './http-proxy';
 import { Observable } from 'rxjs';
-import { TripSearchView } from '../_models/trip-search-view';
+import { TripView } from '../_models/trip-view';
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +15,7 @@ export class SearchService {
 
     constructor(private http:HttpProxy){}
 
-    Search(searchInput: string): Observable<TripSearchView[]>{
+    Search(searchInput: string): Observable<TripView[]>{
         
         return this.http.get(this.baseUrl+"search/"+searchInput);
     }

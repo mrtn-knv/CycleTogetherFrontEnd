@@ -13,6 +13,7 @@ import { debounceTime, distinctUntilChanged, filter, switchMap, takeUntil } from
 import { Subject } from 'rxjs';
 import { GeocodingService } from '../_services/geocoding-service';
 import { TokenGetter } from '../_helpers/token-getter';
+import { EnumNameGetter } from '../_helpers/enum-name-getter';
 
 @Component({
   selector: 'app-create-route',
@@ -43,7 +44,8 @@ export class CreateRouteComponent implements OnInit {
               private router: Router, 
               private activateRoute: ActivatedRoute, 
               private geocodingService: GeocodingService,
-              private tokenGetter: TokenGetter) {
+              private tokenGetter: TokenGetter,
+              private enumGetter: EnumNameGetter) {
     this.routeForm = this.formBuilder.group({
       '_name': ['', Validators.required],
       '_info': ['', Validators.required],
@@ -63,54 +65,15 @@ export class CreateRouteComponent implements OnInit {
     this.equipmentService.getEquipments().subscribe(equipments => {
       this.routeEquipments = equipments;
 
-      this.activateRoute.paramMap.subscribe(params => {
-        const tripId = params.get('id');
-        if(tripId){
-            this.routeModel.id = tripId;
-            this.routeService.getRoute(tripId).subscribe((trip) => this.editRoute(trip));
-        }
-      });
-
       this.validateStartPoint();
       this.validateDestination();
 
     });
 
-    this.terrainLabels = this.getNames(this.terrain);
-    this.difficultyLabels = this.getNames(this.difficulty);
-    this.typeOfRouteLabels = this.getNames(this.typeRoute);
-    this.enduranceLabels = this.getNames(Endurance);
+    this.terrainLabels = this.enumGetter.getNames(this.terrain);
+    this.typeOfRouteLabels = this.enumGetter.getNames(this.typeRoute);
+    this.enduranceLabels = this.enumGetter.getNames(this.endurance);
   }
-
-  editRoute(route: Trip) {
-    this.isEditMode = true;
-    this.routeForm.patchValue({
-      _name: route.name,
-      _info: route.info,
-      _startDest: route.startPoint,
-      _endDest: route.destination,
-      _startTime: route.startTime,
-      _terrain: route.terrain,
-      _typeOfRoute: route.type,
-      _endurance: route.endurance,
-      _difficulty: route.difficulty,
-      _suitableForKids: route.suitableForKids,
-      equipments: this.routeEquipments
-    });
-  }
-
-  saveChanges() {
-    this.routeModel.userId = this.tokenGetter.getUserId();
-    this.routeService.edit(this.routeModel).subscribe((trip) => {
-      this.router.navigate(['route/'+ trip.id]);
-    });
-  }
-
-  // private getUserId(){
-  //   let token = localStorage.getItem('token');
-  //   this.token = jwt_decode(token);
-  //   this.idUser = this.token.nameid;
-  // }
 
   addRoute() {
     this.routeModel.userId = this.tokenGetter.getUserId();
@@ -132,12 +95,6 @@ export class CreateRouteComponent implements OnInit {
       this.routeModel.equipmentsIds.push(equipment.id);
     }
   }
-
-  getNames(types: any): string[] {
-    var options = Object.keys(types);
-    return options.slice(options.length / 2);
-  }
-
 
 
   @ViewChild("placesRef", { static: false }) placesRef: GooglePlaceDirective;

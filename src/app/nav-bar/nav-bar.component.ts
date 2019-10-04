@@ -5,7 +5,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { EventEmitter } from 'events';
 import { SharedService } from '../_services/shared-service';
 import { SearchService } from '../_services/search-service';
-import { TripSearchView } from '../_models/trip-search-view';
 
 @Component({
   selector: 'app-nav-bar',

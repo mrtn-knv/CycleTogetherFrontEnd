@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RoutesService } from '../_services/routes-service';
 import { Trip } from '../_models/trip';
 import { DataFormatter } from '../_helpers/data-formatter';
+import { TripView } from '../_models/trip-view';
 
 @Component({
   selector: 'app-user-trips',
@@ -10,7 +11,7 @@ import { DataFormatter } from '../_helpers/data-formatter';
 })
 export class UserTripsComponent implements OnInit {
 
-  userTrips: Trip[] = [];
+  userTrips: TripView[] = [];
   hasTrips: boolean = true;
   id:string;
 

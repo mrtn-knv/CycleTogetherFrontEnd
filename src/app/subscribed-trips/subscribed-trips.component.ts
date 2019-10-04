@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Trip } from '../_models/trip';
 import { RoutesService } from '../_services/routes-service';
 import { DataFormatter } from '../_helpers/data-formatter';
+import { TripView } from '../_models/trip-view';
 
 @Component({
   selector: 'app-subscribed-trips',
@@ -10,7 +11,7 @@ import { DataFormatter } from '../_helpers/data-formatter';
 })
 export class SubscribedTripsComponent implements OnInit {
 
-  subscribedTrips: Trip[] = [];
+  subscribedTrips: TripView[] = [];
 
   constructor(private routeService:RoutesService, private dateFormat: DataFormatter) { }
 

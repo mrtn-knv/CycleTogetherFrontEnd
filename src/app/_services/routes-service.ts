@@ -24,7 +24,7 @@ export class RoutesService {
         return this.htttp.get(this.baseUrl + "route/" + id);
     }
 
-    getRoutesByUser(): Observable<Trip[]> {
+    getRoutesByUser(): Observable<TripView[]> {
         return this.htttp.get(this.baseUrl + "route/all/mytrips");
     }
 
@@ -32,11 +32,11 @@ export class RoutesService {
         return this.htttp.post(this.baseUrl + "route/new", trip);
     }
 
-    getUserSubscriptions(): Observable<Trip[]> {
+    getUserSubscriptions(): Observable<TripView[]> {
         return this.htttp.get(this.baseUrl + "subscribe/subscribed");
     }
 
-    getUserHistory(): Observable<Trip[]> {
+    getUserHistory(): Observable<TripView[]> {
         return this.htttp.get(this.baseUrl + "subscribe/history");
     }
 
