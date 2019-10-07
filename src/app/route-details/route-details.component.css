@@ -1,4 +1,4 @@
-.card{
+/* .card{
     margin-top: 2%;
 }
 .btn {
@@ -7,4 +7,26 @@
 
 .container{
     margin: 0 auto;
+} */
+
+.map-container{
+    margin-top: 4%;
+    margin-left: 3%;
+    padding: 0;
+}
+
+.detail-table{
+    margin-top: 4%;
+
+}
+
+.item{
+    background-color: #fbfbfb;
+}
+
+.card-body{
+    margin-left: 1%;
+}
+.detail-btns{
+    margin-left: 1%;
 }

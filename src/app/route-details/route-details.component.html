@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="card" style="width: 27rem;">
     <div class="card-body">
       <h5 class="card-title">{{ trip.name }}</h5>
@@ -25,4 +25,35 @@
       <button (click)="goToGallery(trip.id)" class="btn btn-light">GALLERY</button>
     </div>
   </div>
-</div>
+</div> -->
+
+
+<div class="row">
+  <div class="col-md-7 map-container">
+      <app-map [origin]="trip.startPoint" [destination]="trip.destination"></app-map>
+  </div>
+  <ul class="list-group list-group-flush detail-table">
+    <li class="list-group-item item">Starts from: {{ trip.startPoint }}</li>
+    <li class="list-group-item item">Ends at: {{ trip.destination }}</li>
+    <li class="list-group-item item">Starts at: {{ trip.startTime }}</li>
+    <li class="list-group-item item">Is suitable for kids: {{ trip.suitableForKids }}</li>
+    <li class="list-group-item item">People subscribed: {{ subscribedLenght }}</li>
+    <li class="list-group-item item">Terrain: {{ trip.terrain }}</li>
+    <li class="list-group-item item">Expected duration: {{ trip.endurance }}</li>
+    <li class="list-group-item item">Type of route: {{ trip.type }}</li>
+    <li class="list-group-item item">Difficulty: {{ trip.difficulty }}</li>      
+  </ul>
+  </div>
+
+  <div class="card-body">
+    <button *ngIf="isSubscribed && !trip.isComplete" (click)="unsubscribeFromRoute(trip)" class="btn btn-outline-info ">UNSUBSCRIBE</button>
+    <button *ngIf="!isSubscribed && !trip.isComplete" (click)="subscribe(trip)" class="btn btn-outline-info detail-btns">SUBSCRIBE</button>
+    <button class="btn btn-outline-info detail-btns" *ngIf="isRouteOwner && !trip.isComplete" (click)="delete(trip.id)">DELETE</button>
+    <button *ngIf="!trip.isComplete" class="btn btn-outline-info detail-btns" [routerLink]="['/invite/', trip.id]">INVITE PEOPLE</button>
+    <button class="btn btn-outline-info detail-btns" *ngIf="isRouteOwner && !trip.isComplete" [routerLink]="['/edit/', trip.id]">EDIT</button>
+    <button (click)="goToGallery(trip.id)" class="btn btn-outline-info detail-btns">GALLERY</button>
+  </div>
+<br>
+<br>
+<br>
+<hr> 

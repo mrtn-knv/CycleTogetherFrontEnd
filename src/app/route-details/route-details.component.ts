@@ -35,16 +35,17 @@ export class RouteDetailsComponent implements OnInit {
   ngOnInit() {
     this.userId = this.idGetter.getUserId();
     this.activateRoute.paramMap.subscribe(params => {
-      this.id = params.get('id');     
-    })
+      this.id = params.get('id');    
+    });
     this.routeService.getRoute(this.id).subscribe(routeRes => {
       this.trip = routeRes;
       this.isRouteOwner = this.isOwner(routeRes.userId);   
       this.subscribedLenght = this.trip.subscribed.length;
       this.subscribed = routeRes.subscribed;
-      this.isSubscribed = this.isUserSubscribed(this.subscribed);
-      console.log(this.trip);              
-    })
+      this.isSubscribed = this.isUserSubscribed(this.subscribed);             
+    }, (err) => {
+      console.log(err.text);
+    });
     
      
   }
@@ -76,8 +77,10 @@ export class RouteDetailsComponent implements OnInit {
   }
 
   delete(id:string){
+    debugger;
       this.routeService.deleteRoute(id).subscribe(res =>{
         if(res){
+          debugger;
           var current = this.routes.findIndex(trip => trip.id === id);
           this.routes.splice(current, 1);          
           this.router.navigate(['all']);
