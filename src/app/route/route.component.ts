@@ -15,7 +15,7 @@ import { Picture } from '../_models/picture';
 export class RouteComponent implements OnInit {
 
   routesModel: TripView[] = [];
-  imagesForTrip: Picture[] = []; 
+  imagesForTrip: Picture[] = [];
 
   constructor(private routeService: RoutesService,
               private dataFormat: DataFormatter,
@@ -24,8 +24,8 @@ export class RouteComponent implements OnInit {
   ngOnInit() {
     this.routeService.getRoutes().subscribe(routesRes => {
       this.routesModel = routesRes;     
-        this.dataFormat.formatStartTime(this.routesModel);      
-  }), (err) => console.log(err);
-    
+        this.dataFormat.formatStartTime(this.routesModel);   
+  }), (err) => console.log(err);  
   }
+
 }

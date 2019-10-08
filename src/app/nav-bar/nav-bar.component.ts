@@ -38,7 +38,8 @@ export class NavBarComponent implements OnInit {
   }
 
   seachInTrips(){
-      this.router.navigate(['search/', this.searchInput]);
+      this.router.navigateByUrl('/', { skipLocationChange: true })
+      .then(() => this.router.navigate(['search/', this.searchInput]));
   }
 
 }

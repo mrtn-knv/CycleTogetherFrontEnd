@@ -11,7 +11,6 @@ import { AuthGuard } from './_services/auth-guard';
 import { SubscribedTripsComponent } from './subscribed-trips/subscribed-trips.component';
 import { SearchComponent } from './search/search.component';
 import { InvitationComponent } from './invitation/invitation.component';
-import { MapComponent } from './map/map.component';
 import { HistoryComponent } from './history/history.component';
 import { EditRouteComponent } from './edit-route/edit-route.component';
 

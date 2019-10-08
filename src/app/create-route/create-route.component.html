@@ -37,8 +37,10 @@
                   <div>Invalid address</div>
                 </div>
           </div>
-          <app-map *ngIf="routeModel.startPoint && routeModel.destination" [origin]="routeModel.startPoint"
-            [destination]="routeModel.destination"></app-map>
+          <div class="col-6">
+              <app-map *ngIf="routeModel.startPoint && routeModel.destination" [origin]="routeModel.startPoint"
+              [destination]="routeModel.destination"></app-map>
+          </div>          
           <div class="routeInput">
             <label for="formGroupExampleInput5">START TIME *</label>
             <input type="datetime-local" class="form-control" id="formGroupExampleInput4"

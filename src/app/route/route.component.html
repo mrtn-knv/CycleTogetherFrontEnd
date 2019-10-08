@@ -1,34 +1,7 @@
-<!-- <div class="routes-container">
-    <ul>
-      <li class="routes">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4" *ngFor="let route of routesModel">
-                    <div class="card">
-                        <img href="assets/default-img.jpg" class="card-img-top" alt="">                       
-                        <div class="card-body">
-                          <h4 class="card-title">{{ route.name }}</h4>
-                          <p class="card-text">{{ route.dateFormatted }}
-                            <br>
-                             AT   {{ route.startHour }}
-                          </p>
-                          <button class="btn btn-outline-info" [routerLink]="['/route/', route.id]">DETAILS</button>
-                        </div>
-                      </div>
-                </div>
-            </div> 
-        </div>                
-      </li>        
-    </ul>
-</div> -->
-
-
 <div class="container" *ngFor="let route of routesModel">
   <div class="row">
-    <div class="col-md-7">
-      <a href="#">
-        <img class="img-fluid rounded mb-3 mb-md-0" src="http://127.0.0.1:8887/http___cdn.coresites.factorymedia.com_twc_wp-content_uploads_2014_09_autumn2.jpg" alt="">
-      </a>
+    <div class="col-md-6">
+        <img class="img-fluid rounded" src="http://127.0.0.1:8887/http___cdn.coresites.factorymedia.com_twc_wp-content_uploads_2014_09_autumn2.jpg" alt="">
     </div>
     <div class="col-md-5">
       <h3>{{ route.name }}</h3>
