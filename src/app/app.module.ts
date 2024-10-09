@@ -79,7 +79,7 @@ export function tokenGetter(){
     JwtModule.forRoot(JWT_Module_Options),
     AngularFileUploaderModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBnM72vVFqGeINyI2eGu5zuQ9_wD2udgoI',
+      apiKey: '',
     }),
     AgmDirectionModule,
     GooglePlaceModule
